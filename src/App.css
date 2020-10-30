@@ -1,3 +1,13 @@
 *{
   font-family:"Lato", sans-serif;
+  
+}
+
+.stickit{
+  position: fixed;
+  top:90px;
+}
+
+.fixed {
+  position: fixed;
 }

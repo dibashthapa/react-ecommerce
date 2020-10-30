@@ -4,6 +4,7 @@ import "./App.css";
 import theme from "./theme";
 import { ThemeProvider } from "@material-ui/core";
 import { Navbar , Banner , DrawerApp} from "./sections";
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -11,6 +12,7 @@ function App() {
         <Navbar />
         <Banner />
         <DrawerApp />
+        
       </div>
     </ThemeProvider>
   );

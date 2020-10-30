@@ -32,7 +32,7 @@ export const BannerCard = (props) => {
     <Box component="div" className={ classes.box }>
       <Grid container>
         <Grid container item xs={12} spacing={2}>
-          <Grid item xs={0}>
+          <Grid item xs>
             <IconButton className={classes.arrowIcon}>
               <KeyboardArrowLeftIcon />
             </IconButton>
@@ -65,7 +65,7 @@ export const BannerCard = (props) => {
               />
             </Card>
           </Grid>
-          <Grid item xs={0}>
+          <Grid item xs>
           <IconButton className={classes.arrowIcon}>
           <KeyboardArrowRightIcon />
         </IconButton>

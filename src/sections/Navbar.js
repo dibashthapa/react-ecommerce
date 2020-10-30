@@ -120,12 +120,30 @@ const useStyles = makeStyles((theme) => ({
 
 export const Navbar = () => {
   const classes = useStyles();
+
+  const [position, setPosition] = React.useState("static");
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  React.useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  const handleScroll = (e) => {
+    const scrollBottom = e.currentTarget.scrollY;
+
+    if (scrollBottom > 20) {
+      setPosition("fixed");
+    } else {
+      setPosition("static");
+    }
+  };
   const open = Boolean(anchorEl);
   const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -211,16 +229,8 @@ export const Navbar = () => {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" className={classes.appBar}>
+      <AppBar position={position} className={classes.appBar}>
         <Toolbar>
-          {/* <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton> */}
           <Typography className={classes.title} variant="h6" noWrap>
             PickBazar
           </Typography>
@@ -239,61 +249,60 @@ export const Navbar = () => {
             />
           </div>
 
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <List className={classes.list}>
-              <ListItem>
-                <ListItemText
-                  classes={{ root: classes.listItem }}
-                ></ListItemText>
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  classes={{ root: classes.listItem }}
-                ></ListItemText>
-              </ListItem>
-              <ListItem className={classes.cartButton} >
-                <Typography aria-owns={open ? 'mouse-over-popover' : undefined}
-        aria-haspopup="true"
-        onMouseEnter={handlePopoverOpen}
-        onMouseLeave={handlePopoverClose}>
-                <ListItemIcon>
-                  <Badge
-                    badgeContent={10}
-                    showZero
-                    classes={{ badge: classes.cartBadge }}
+          <div className={classes.grow}>
+            <div className={classes.sectionDesktop}>
+              <List className={classes.list}>
+                <ListItem>
+                  <ListItemText
+                    classes={{ root: classes.listItem }}
+                  ></ListItemText>
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    classes={{ root: classes.listItem }}
+                  ></ListItemText>
+                </ListItem>
+                <ListItem className={classes.cartButton}>
+                  <Typography
+                    aria-owns={open ? "mouse-over-popover" : undefined}
+                    aria-haspopup="true"
+                    onMouseEnter={handlePopoverOpen}
+                    onMouseLeave={handlePopoverClose}
                   >
-                  
-                    <LocalMallOutlinedIcon
-                      className={classes.cartIcon}
-                      
-                    />
-                  </Badge>
-                </ListItemIcon>
-                </Typography>
-                <Popover
-                  id="mouse-over-popover"
-                  className={classes.popover}
-                  classes={{
-                    paper: classes.paper,
-                  }}
-                  open={open}
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
-                  }}
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                  }}
-                  onClose={handlePopoverClose}
-                  disableRestoreFocus
-                >
-                  <Typography color="textPrimary">I use Popover.</Typography>
-                </Popover>
-              </ListItem>
-            </List>
+                    <ListItemIcon>
+                      <Badge
+                        badgeContent={10}
+                        showZero
+                        classes={{ badge: classes.cartBadge }}
+                      >
+                        <LocalMallOutlinedIcon className={classes.cartIcon} />
+                      </Badge>
+                    </ListItemIcon>
+                  </Typography>
+                  <Popover
+                    id="mouse-over-popover"
+                    className={classes.popover}
+                    classes={{
+                      paper: classes.paper,
+                    }}
+                    open={open}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "left",
+                    }}
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "left",
+                    }}
+                    onClose={handlePopoverClose}
+                    disableRestoreFocus
+                  >
+                    <Typography color="textPrimary">I use Popover.</Typography>
+                  </Popover>
+                </ListItem>
+              </List>
+            </div>
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
