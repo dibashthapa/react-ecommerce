@@ -6,9 +6,9 @@ import Typography from "@material-ui/core/Typography";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import Product from "../components/Product";
+import Product from "../../components/Product";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import { groceries } from "../data";
+import { groceries } from "../../data";
 const drawerWidth = 300;
 
 export const DrawerApp = () => {
@@ -29,6 +29,8 @@ export const DrawerApp = () => {
     drawerPaper: {
       width: drawerWidth,
       borderTop: "none",
+      
+      
     },
 
     // necessary for content to be below app bar
@@ -41,6 +43,12 @@ export const DrawerApp = () => {
     listItem: {
       fontWeight: "500",
     },
+    paperAnchorBottom: {
+      bottom: "auto",
+    },
+    paperAnchorTop:{
+      top:"90px"
+    }
   }));
 
   React.useEffect(() => {
@@ -51,7 +59,6 @@ export const DrawerApp = () => {
   }, []);
   const handleScroll = (e) => {
     const scrollBottom = e.currentTarget.scrollY;
-    console.log(scrollBottom);
     if (scrollBottom >= 200) {
       setAnchor("left");
     } else {
@@ -67,7 +74,9 @@ export const DrawerApp = () => {
           className={classes.drawer}
           variant="permanent"
           classes={{
-            paper: classes.drawerPaper,
+            paperAnchorLeft: classes.paperAnchorTop ,
+            paper:classes.drawerPaper ,  
+            paperAnchorBottom: classes.paperAnchorBottom
           }}
           anchor={anchor}
         >

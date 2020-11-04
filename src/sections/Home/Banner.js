@@ -1,5 +1,5 @@
 import React from "react";
-import { BannerCard } from "../components";
+import { BannerCard } from "../../components";
 import { Container, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({

@@ -11,25 +11,25 @@ import { Grid, Box } from "@material-ui/core";
 import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import { IconButton } from "@material-ui/core";
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+
 const useStyles = makeStyles({
   root: {},
-  box:{padding:"60px", boxShadow: "rgba(0, 0, 0, 0.06) 0px 1px 2px"},
-  arrowIcon:{
-    position:"relative",
-    top:"30%"
+  box: { padding: "60px", boxShadow: "rgba(0, 0, 0, 0.06) 0px 1px 2px" },
+  arrowIcon: {
+    position: "relative",
+    top: "30%",
   },
   media: {
     height: 180,
   },
+  grid3: { maxWidth: "30%", flexBasis: "30%" },
 });
 
 export const BannerCard = (props) => {
   const classes = useStyles();
 
   return (
-    <Box component="div" className={ classes.box }>
+    <Box component="div" className={classes.box}>
       <Grid container>
         <Grid container item xs={12} spacing={2}>
           <Grid item xs>
@@ -37,7 +37,7 @@ export const BannerCard = (props) => {
               <KeyboardArrowLeftIcon />
             </IconButton>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={3} classes={{ "grid-xs-3": classes.grid3 }}>
             <Card className={classes.root}>
               <CardMedia
                 className={classes.media}
@@ -46,7 +46,7 @@ export const BannerCard = (props) => {
               />
             </Card>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={3} classes={{ "grid-xs-3": classes.grid3 }} >
             <Card className={classes.root}>
               <CardMedia
                 className={classes.media}
@@ -55,9 +55,9 @@ export const BannerCard = (props) => {
               />
             </Card>
           </Grid>
-        
-          <Grid item xs={3}>
-            <Card className={classes.root}>
+
+          <Grid item xs={3} classes={{ "grid-xs-3": classes.grid3 }}>
+            <Card className={classes.root} >
               <CardMedia
                 className={classes.media}
                 image="/static/images/cards/card3.png"
@@ -65,17 +65,13 @@ export const BannerCard = (props) => {
               />
             </Card>
           </Grid>
-          <Grid item xs>
-          <IconButton className={classes.arrowIcon}>
-          <KeyboardArrowRightIcon />
-        </IconButton>
+          <Grid item xs classes={{ "grid-xs-3": classes.grid3 }}>
+            <IconButton className={classes.arrowIcon}>
+              <KeyboardArrowRightIcon />
+            </IconButton>
           </Grid>
         </Grid>
-      
       </Grid>
     </Box>
-   
-    
   );
-
-  }
+};

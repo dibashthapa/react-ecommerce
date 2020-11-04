@@ -22,8 +22,8 @@ import {
   Button,
   ListItemIcon,
 } from "@material-ui/core";
-import { DropButton } from "../components/Dropbutton";
-import { categories, languages } from "../data";
+import { DropButton } from "../../components/Dropbutton";
+import { categories, languages } from "../../data";
 import LocalMallOutlinedIcon from "@material-ui/icons/LocalMallOutlined";
 const useStyles = makeStyles((theme) => ({
   appBar: {

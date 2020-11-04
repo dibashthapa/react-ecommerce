@@ -1,95 +1,84 @@
 import React from "react";
-import { Button, makeStyles } from "@material-ui/core";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Grow from "@material-ui/core/Grow";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
+import {
+  Button,
+  FormControl,
+  makeStyles,
+  Select,
+  InputBase,
+  withStyles,
+  InputLabel,
+  NativeSelect,
+} from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
-import MenuList from "@material-ui/core/MenuList";
 const useStyles = makeStyles((theme) => ({
   button: {
-    backgroundColor: "white",
-    border: "1px solid rgb(241, 241, 241)",
-    marginLeft: "20px",
-    textTransform: "capitalize",
-    textDecoration: "none",
-    fontSize: "15px",
     color: "rgb(0, 158, 127)",
+    marginLeft: "20px",
+  },
+  select: {
+    "&:focus": {
+      backgroundColor: "#fff",
+    },
   },
   paper: {
     marginBottom: "20px",
   },
+  margin: {
+    margin: theme.spacing(1),
+  },
 }));
+const BootstrapInput = withStyles((theme) => ({
+  root: {
+    "label + &": {
+      marginTop: theme.spacing(3),
+    },
+  },
+  input: {
+    borderRadius: 4,
+    position: "relative",
+    backgroundColor: theme.palette.background.paper,
+    border: "1px solid #ced4da",
+    fontSize: 16,
+    padding: "10px 26px 10px 12px",
+    transition: theme.transitions.create(["border-color", "box-shadow"]),
+    "&:focus": {
+      borderRadius: 4,
+    },
+  },
+}))(InputBase);
 export const DropButton = ({ category }) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+
   const [product, setProduct] = React.useState(category[0]);
-  const anchorRef = React.useRef(null);
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-    const value  = event.target.getAttribute("value");
+
+  const handleChange = (event) => {
+    const value = event.target.value;
     setProduct(value);
-
-    setOpen(false);
   };
 
-  function handleListKeyDown(event) {
-    if (event.key === "Tab") {
-      event.preventDefault();
-      setOpen(false);
-    }
-  }
   return (
     <div>
-      <Button
-        className={classes.button}
-        endIcon={<ArrowDropDownIcon />}
-        ref={anchorRef}
-        onClick={handleToggle}
-      >
-        {product}
-      </Button>
-      <Popper
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === "bottom" ? "center top" : "center bottom",
-            }}
-          >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id="menu-list-grow"
-                  onKeyDown={handleListKeyDown}
-                >
-                  {category.map(value=> {
-                    return (
-                      <MenuItem onClick={handleClose} value={ value }>{ value }</MenuItem>
-                    )
-                  })}
-                 
-                
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
+      <FormControl className={classes.margin}>
+        <Select
+          labelId="demo-customized-select-label"
+          id="demo-customized-select"
+          value={product}
+          onChange={handleChange}
+          input={<BootstrapInput />}
+          className={ classes.button }
+          classes={{
+            select: classes.select,
+          }}
+        >
+          {category.map((value, key) => {
+            return (
+              <MenuItem value={value} key={key}>
+                {value}{" "}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </FormControl>
     </div>
   );
 };
