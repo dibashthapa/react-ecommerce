@@ -6,50 +6,14 @@ import Typography from "@material-ui/core/Typography";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import Product from "../../components/Product";
+import Product from "../../../components/Product";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import { groceries } from "../../data";
-const drawerWidth = 300;
+import { groceries } from "../../../data";
+import styles from "./style";
 
+const useStyles = makeStyles(styles)
 export const DrawerApp = () => {
   const [anchor, setAnchor] = React.useState("bottom");
-
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      display: "flex",
-    },
-    appBar: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
-    drawer: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-    drawerPaper: {
-      width: drawerWidth,
-      borderTop: "none",
-      
-      
-    },
-
-    // necessary for content to be below app bar
-
-    content: {
-      flexGrow: 1,
-      backgroundColor: theme.palette.background.default,
-      padding: theme.spacing(3),
-    },
-    listItem: {
-      fontWeight: "500",
-    },
-    paperAnchorBottom: {
-      bottom: "auto",
-    },
-    paperAnchorTop:{
-      top:"90px"
-    }
-  }));
 
   React.useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -65,7 +29,7 @@ export const DrawerApp = () => {
       setAnchor("bottom");
     }
   };
-  const classes = useStyles();
+  const classes = useStyles(styles);
 
   return (
     <React.Fragment>
@@ -74,9 +38,9 @@ export const DrawerApp = () => {
           className={classes.drawer}
           variant="permanent"
           classes={{
-            paperAnchorLeft: classes.paperAnchorTop ,
-            paper:classes.drawerPaper ,  
-            paperAnchorBottom: classes.paperAnchorBottom
+            paperAnchorLeft: classes.paperAnchorTop,
+            paper: classes.drawerPaper,
+            paperAnchorBottom: classes.paperAnchorBottom,
           }}
           anchor={anchor}
         >

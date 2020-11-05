@@ -7,30 +7,14 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import image from "../data/image";
+import image from '../../data/image'
 import { Grid, Container } from "@material-ui/core";
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-  grid: {
- 
-    height: 352,
-  },
-  media: {
-    height: 160,
-  },
-  card: {
-    margin: 16,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-  },
-});
+import styles from "./style";
+const useStyles = makeStyles(styles);
 const Product = () => {
   const classes = useStyles();
   const [images, setImages] = React.useState();
-
+  console.log(classes)
   React.useEffect(() => {
     setImages(image);
   }, []);
@@ -41,26 +25,25 @@ const Product = () => {
           {images &&
             images.map(function ({ src, name, price }) {
               return (
-               
-                  <Grid
-                    item
-                    component={Card}
-                    xs={2}
-                    className={classes.card}
-                    key={name}
-                  > <CardActionArea>
+                <Grid
+                  item
+                  component={Card}
+                  xs={2}
+                  className={classes.card}
+                  key={name}
+                >
+                  {" "}
+                  <CardActionArea>
                     <CardMedia
                       className={classes.media}
                       image={src}
                       title={name}
                     />
-                    </CardActionArea>
-                    <CardContent>
-                      <Typography>{name}</Typography>
-                    </CardContent>
-                    
-                  </Grid>
-               
+                  </CardActionArea>
+                  <CardContent>
+                    <Typography>{name}</Typography>
+                  </CardContent>
+                </Grid>
               );
             })}
         </Grid>

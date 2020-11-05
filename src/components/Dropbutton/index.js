@@ -10,23 +10,9 @@ import {
   NativeSelect,
 } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
-const useStyles = makeStyles((theme) => ({
-  button: {
-    color: "rgb(0, 158, 127)",
-    marginLeft: "20px",
-  },
-  select: {
-    "&:focus": {
-      backgroundColor: "#fff",
-    },
-  },
-  paper: {
-    marginBottom: "20px",
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-}));
+import styles from './style'
+
+const useStyles = makeStyles(styles)
 const BootstrapInput = withStyles((theme) => ({
   root: {
     "label + &": {
