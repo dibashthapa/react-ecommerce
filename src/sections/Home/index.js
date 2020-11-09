@@ -1,11 +1,12 @@
 import React from "react";
-import { Navbar } from "./Navbar";
 import { Banner } from "./Banner";
 import { DrawerApp } from "./Drawer";
+import {
+  Route 
+} from "@material-ui/core"
 const Home = () => {
   return (
     <React.Fragment>
-      <Navbar />
       <Banner />
       <DrawerApp />
     </React.Fragment>

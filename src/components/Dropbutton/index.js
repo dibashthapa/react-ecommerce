@@ -44,7 +44,7 @@ export const DropButton = ({ category }) => {
 
   return (
     <div>
-      <FormControl className={classes.margin}>
+      <FormControl className={classes.formControl}>
         <Select
           labelId="demo-customized-select-label"
           id="demo-customized-select"

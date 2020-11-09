@@ -161,70 +161,69 @@ const images = [
     name: "Sliced Turkey Breast",
     price: "$10",
   },
-  // {
-  //   src:
-  //     "https://res.cloudinary.com/redq-inc/image/upload/c_fit,q_auto:best,w_300/v1589736058/pickbazar/grocery/chicken_brest_ribcxo.jpg",
-  //   name: "Chicken Thighs",
-  //   price: "$15",
-  // },
-  // {
-  //   src:
-  //     "https://res.cloudinary.com/redq-inc/image/upload/c_fit,q_auto:best,w_300/v1589736058/pickbazar/grocery/steak_okxpjo.jpg",
-  //   name: "Chicken Breast",
-  //   price: "$4.5",
-  // },
-  // {
-  //   src:
-  //     "https://s3.amazonaws.com/redqteam.com/pickbazar/belmont_custard_cream.jpg",
-  //   name: "Beef Steak",
-  //   price: "$6.4",
-  // },
-  // {
-  //   src:
-  //     "https://s3.amazonaws.com/redqteam.com/pickbazar/crawford_digestives.jpg",
-  //   name: "Belmont Custard Cream",
-  //   price: "$5",
-  // },
-  // {
-  //   src: "https://s3.amazonaws.com/redqteam.com/pickbazar/crawford_shortie.jpg",
-  //   name: "Crawford Digestives",
-  //   price: "$9.5",
-  // },
-  // {
-  //   src:
-  //     "https://s3.amazonaws.com/redqteam.com/pickbazar/Hill_Biscuits_Mini_Pack_Mix_.jpg",
-  //   name: "Crawford Shortie",
-  //   price: "$7.2",
-  // },
-  // {
-  //   src: "https://s3.amazonaws.com/redqteam.com/pickbazar/Jammie_Dodgers.jpg",
-  //   name: "Hill Mini Pack Mix",
-  //   price: "$8",
-  // },
-  // {
-  //   src:
-  //     "https://s3.amazonaws.com/redqteam.com/pickbazar/julis_cheese_crackers.jpg",
-  //   name: "Jammie Dodgers Raspberry",
-  //   price: "$10",
-  // },
-  // {
-  //   src:
-  //     "https://s3.amazonaws.com/redqteam.com/pickbazar/khong_guan_orange_cream.jpg",
-  //   name: "Juli S Cheese Crackers",
-  //   price: "$9",
-  // },
-  // {
-  //   src:
-  //     "https://s3.amazonaws.com/redqteam.com/pickbazar/khong_guan_premium_marie.jpg",
-  //   name: "Khong Guan Orange Cream",
-  //   price: "$10",
-  // },
-  // {
-  //   src: "https://s3.amazonaws.com/redqteam.com/pickbazar/lotus_biscoff.jpg",
-  //   name: "Khong Guan Premium Marie",
-  //   price: "$4",
-  // },
+  {
+    src:
+      "https://res.cloudinary.com/redq-inc/image/upload/c_fit,q_auto:best,w_300/v1589736058/pickbazar/grocery/chicken_brest_ribcxo.jpg",
+    name: "Chicken Thighs",
+    price: "$15",
+  },
+  {
+    src:
+      "https://res.cloudinary.com/redq-inc/image/upload/c_fit,q_auto:best,w_300/v1589736058/pickbazar/grocery/steak_okxpjo.jpg",
+    name: "Chicken Breast",
+    price: "$4.5",
+  },
+  {
+    src:
+      "https://s3.amazonaws.com/redqteam.com/pickbazar/belmont_custard_cream.jpg",
+    name: "Beef Steak",
+    price: "$6.4",
+  },
+  {
+    src:
+      "https://s3.amazonaws.com/redqteam.com/pickbazar/crawford_digestives.jpg",
+    name: "Belmont Custard Cream",
+    price: "$5",
+  },
+  {
+    src: "https://s3.amazonaws.com/redqteam.com/pickbazar/crawford_shortie.jpg",
+    name: "Crawford Digestives",
+    price: "$9.5",
+  },
+  {
+    src:
+      "https://s3.amazonaws.com/redqteam.com/pickbazar/Hill_Biscuits_Mini_Pack_Mix_.jpg",
+    name: "Crawford Shortie",
+    price: "$7.2",
+  },
+  {
+    src: "https://s3.amazonaws.com/redqteam.com/pickbazar/Jammie_Dodgers.jpg",
+    name: "Hill Mini Pack Mix",
+    price: "$8",
+  },
+  {
+    src:
+      "https://s3.amazonaws.com/redqteam.com/pickbazar/julis_cheese_crackers.jpg",
+    name: "Jammie Dodgers Raspberry",
+    price: "$10",
+  },
+  {
+    src:
+      "https://s3.amazonaws.com/redqteam.com/pickbazar/khong_guan_orange_cream.jpg",
+    name: "Juli S Cheese Crackers",
+    price: "$9",
+  },
+  {
+    src:
+      "https://s3.amazonaws.com/redqteam.com/pickbazar/khong_guan_premium_marie.jpg",
+    name: "Khong Guan Orange Cream",
+    price: "$10",
+  },
+  {
+    src: "https://s3.amazonaws.com/redqteam.com/pickbazar/lotus_biscoff.jpg",
+    name: "Khong Guan Premium Marie",
+    price: "$4",
+  },
 ];
 
-
-export default images
+export default images;

@@ -1,7 +1,9 @@
 const styles = (theme) => ({
   button: {
     color: "rgb(0, 158, 127)",
-    marginLeft: "20px",
+    marginLeft: theme.spacing(2),
+    width:120
+    
   },
   select: {
     "&:focus": {
@@ -11,8 +13,11 @@ const styles = (theme) => ({
   paper: {
     marginBottom: "20px",
   },
-  margin: {
+  formControl: {
     margin: theme.spacing(1),
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
   },
 });
 

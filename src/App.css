@@ -2,7 +2,9 @@
   font-family:"Lato", sans-serif;
   
 }
-
+body {
+  background-color: #fafafa;
+}
 .stickit{
   position: fixed;
   top:90px;
@@ -11,3 +13,13 @@
 .fixed {
   position: fixed;
 }
+.rec.rec-carousel-item.rec-carousel-item-1{
+  margin-left:16px;
+  margin-right: 16px;
+}
+.rec-dot{
+  display:none;
+}
+/* .kyJvRZ{
+  display:none;
+} */
