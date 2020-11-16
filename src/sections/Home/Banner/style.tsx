@@ -1,4 +1,6 @@
-const styles = (theme) => ({
+import { Theme , createStyles } from "@material-ui/core/styles"
+const styles = (theme: Theme) => (
+  createStyles({
   root: {},
   box: {
     padding: "60px",
@@ -15,6 +17,7 @@ const styles = (theme) => ({
     height:"100%"
   },
   grid3: { maxWidth: "30%", flexBasis: "30%" },
-});
+  })
+);
 
 export default styles;

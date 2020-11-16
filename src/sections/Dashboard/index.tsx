@@ -19,8 +19,10 @@ import { routes } from "./routes";
 import styles from "./style";
 
 const useStyles = makeStyles(styles);
-
-export const Dashboard = (props) => {
+interface Props {
+  window?: () => Window;
+}
+export const Dashboard = (props: Props) => {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();

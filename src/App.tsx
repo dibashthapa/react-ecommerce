@@ -4,7 +4,7 @@ import theme from "./theme";
 import { ThemeProvider } from "@material-ui/core";
 import { Product } from './pages'
 import { Dashboard } from "./sections/Dashboard";
-import { Route, Link, BrowserRouter } from "react-router-dom";
+import { Route,  BrowserRouter } from "react-router-dom";
 import Home from "./sections/Home";
 
 function App() {

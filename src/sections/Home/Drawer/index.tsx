@@ -1,4 +1,4 @@
-import React from "react";
+import React , { MouseEvent } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -25,19 +25,35 @@ import SearchIcon from "@material-ui/icons/Search";
 import Badge from "@material-ui/core/Badge";
 import { HiMenuAlt1 } from "react-icons/hi";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import { Drawer } from "@material-ui/core"
+import { useSelector } from "react-redux"
 const useStyles = makeStyles(styles);
+interface Props {
+  window?: () => Window;
+}
 
-export const DrawerApp = (props) => {
+  interface productInterface {
+    id?:number,
+    name:string , 
+    price:string ,
+    src:string,
+    count?:number
+  }
+
+  interface RootState{
+    products:Array<productInterface>
+  }
+
+export const DrawerApp = (props: Props) => {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [anchor, setAnchor] = React.useState("bottom");
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchor, setAnchor] = React.useState('bottom');
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const product = useSelector((state:RootState) => state.products)
   React.useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -48,11 +64,12 @@ export const DrawerApp = (props) => {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  const handleCategoryOpen = (event) => {
+
+  const handleCategoryOpen = (event:MouseEvent<HTMLLIElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handlePopoverOpen = (event) => {
+  const handlePopoverOpen = (event:MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleMobileMenuClose = () => {
@@ -65,8 +82,8 @@ export const DrawerApp = (props) => {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
-  const handleScroll = (e) => {
-    const scrollBottom = e.currentTarget.scrollY;
+  const handleScroll = () => {
+    const scrollBottom = window.scrollY;
     if (scrollBottom >= 240) {
       setAnchor("left");
     } else {
@@ -112,12 +129,13 @@ export const DrawerApp = (props) => {
       <List>
         {groceries.map(({ name, key }) => {
           return (
-            <ListItem button className={classes.ListItem} key={name}>
+            <ListItem button  key={name}>
               <ListItemIcon>
                 <img
                   src={`/static/images/icons/${key}.svg`}
                   height="20px"
                   width="20px"
+                  alt = { name }
                 />
               </ListItemIcon>
               <ListItemText primary={name} />
@@ -177,7 +195,7 @@ export const DrawerApp = (props) => {
                       classes={{ root: classes.listItem }}
                     ></ListItemText>
                   </ListItem>
-                  <ListItem className={classes.cartButton}>
+                  <ListItem >
                     <Typography
                       aria-haspopup="true"
                       onMouseEnter={handlePopoverOpen}
@@ -185,11 +203,11 @@ export const DrawerApp = (props) => {
                     >
                       <ListItemIcon>
                         <Badge
-                          badgeContent={10}
+                          badgeContent={ product.length}
                           showZero
                           classes={{ badge: classes.cartBadge }}
                         >
-                          <ShoppingBasketIcon className={ classes.cartIcon }/>
+                          <ShoppingBasketIcon />
                         </Badge>
                       </ListItemIcon>
                     </Typography>
@@ -236,7 +254,7 @@ export const DrawerApp = (props) => {
               paperAnchorBottom: classes.paperAnchorBottom,
             }}
             variant="permanent"
-            anchor={anchor}
+            anchor={anchor === "bottom" ? "bottom":"left"}
             open
           >
             {drawer}

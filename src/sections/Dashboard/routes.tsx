@@ -1,4 +1,3 @@
-import { ImHome } from "react-icons/im";
 import { GrPersonalComputer } from "react-icons/gr";
 import { BsFillImageFill, BsGiftFill } from "react-icons/bs";
 import { FaFileAlt, FaShoppingCart } from "react-icons/fa";

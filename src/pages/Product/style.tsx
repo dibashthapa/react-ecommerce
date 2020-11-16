@@ -1,4 +1,6 @@
-const style = (theme) => ({
+import { Theme } from "@material-ui/core"
+const style = (theme:Theme) => ({
+  root:{},
   media: {
     height: 300,
     width:"50%",

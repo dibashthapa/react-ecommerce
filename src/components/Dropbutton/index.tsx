@@ -1,18 +1,15 @@
-import React from "react";
+import React   from "react";
 import {
-  Button,
   FormControl,
   makeStyles,
   Select,
   InputBase,
   withStyles,
-  InputLabel,
-  NativeSelect,
 } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
-import styles from './style'
+import styles from "./style";
 
-const useStyles = makeStyles(styles)
+const useStyles = makeStyles(styles);
 const BootstrapInput = withStyles((theme) => ({
   root: {
     "label + &": {
@@ -32,12 +29,14 @@ const BootstrapInput = withStyles((theme) => ({
     },
   },
 }))(InputBase);
-export const DropButton = ({ category }) => {
+export const DropButton: React.FC<{ category: Array<string> }> = ({
+  category,
+}) => {
   const classes = useStyles();
 
   const [product, setProduct] = React.useState(category[0]);
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<any>) => {
     const value = event.target.value;
     setProduct(value);
   };
@@ -51,7 +50,7 @@ export const DropButton = ({ category }) => {
           value={product}
           onChange={handleChange}
           input={<BootstrapInput />}
-          className={ classes.button }
+          className={classes.button}
           classes={{
             select: classes.select,
           }}

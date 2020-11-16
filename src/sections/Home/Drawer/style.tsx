@@ -1,6 +1,8 @@
 import { fade } from "@material-ui/core/styles";
+import { createStyles , Theme } from "@material-ui/core/styles"
 const drawerWidth = 300;
-const styles = (theme) => ({
+const styles = (theme: Theme) => (
+  createStyles({
   root: {
     display: "flex",
   },
@@ -62,12 +64,6 @@ const styles = (theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
-      display: "none",
-    },
-  },
   title: {
     [theme.breakpoints.down("sm")]: {
       display: "flex",
@@ -105,7 +101,6 @@ const styles = (theme) => ({
   },
   inputRoot: {},
   inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
@@ -145,6 +140,7 @@ const styles = (theme) => ({
       marginRight: "7px",
     },
   },
-});
+  })
+);
 
 export default styles;

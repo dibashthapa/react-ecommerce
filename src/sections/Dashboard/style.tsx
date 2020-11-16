@@ -1,5 +1,7 @@
+import { createStyles , Theme } from "@material-ui/core"
 const drawerWidth = 240;
-const styles = (theme) => ({
+const styles = (theme: Theme) => (
+  createStyles({
   root: {
     display: "flex",
   },
@@ -33,6 +35,7 @@ const styles = (theme) => ({
   listItemText: {
     fontSize: "1.1rem",
   },
-});
+  })
+);
 
 export default styles

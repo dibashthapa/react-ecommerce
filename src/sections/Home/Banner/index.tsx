@@ -1,30 +1,14 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Button,
-  Typography,
-} from "@material-ui/core";
-import { Grid, Box } from "@material-ui/core";
-import {
-  KeyboardArrowLeftIcon,
-  KeyboardArrowRightIcon,
-} from "@material-ui/icons";
-import { IconButton } from "@material-ui/core";
+import {  Box } from "@material-ui/core";
 import styles from "./style";
 import Carousel from "react-multi-carousel";
 import { card } from "../../../data";
-import { useTheme } from "@material-ui/core/styles";
 import "react-multi-carousel/lib/styles.css";
 const useStyles = makeStyles(styles);
 
 export const Banner = () => {
   const classes = useStyles();
-  const theme = useTheme();
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -47,7 +31,7 @@ export const Banner = () => {
         infinite={true}
         autoPlay={false}
         autoPlaySpeed={3000}
-        customDot={false}
+        customDot={null}
         ssr={false}
         showDots={false}
         renderButtonGroupOutside={true}
