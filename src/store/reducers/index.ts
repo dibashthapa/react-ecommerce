@@ -5,7 +5,6 @@ import {
   SUB_QUANTITY,
 } from "../actions/actions";
 
-
 const initialState: defaultState = {
   products: [],
 };
@@ -15,19 +14,15 @@ export const ShoppingReducer = (state = initialState, action: any) => {
     case ADD_TO_CART:
       return {
         ...state,
-        products: !state.products.some(
-          (p) => p.id === action.productDetails.id
-        )
+        products: !state.products.some((p) => p.id === action.productDetails.id)
           ? [...state.products, action.productDetails]
           : [...state.products],
       };
     case REMOVE_FROM_CART:
       return {
         ...state,
-        products: state.products.map((product) =>
-          product.id === action.id
-            ? { ...product, selected: false, quantity: 1 }
-            : product
+        products: state.products.filter(
+          (p) => p.id !== action.productDetails.id
         ),
       };
     case ADD_QUANTITY:

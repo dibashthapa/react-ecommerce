@@ -51,7 +51,12 @@ const styles = (theme: Theme) => (
     },
   },
   // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
+    toolbar: {
+      [theme.breakpoints.down("sm")]:{
+      display:"flex",
+      flexDirection:"column",
+      }
+    }, 
   drawerPaper: {
     width: drawerWidth,
 
@@ -67,8 +72,8 @@ const styles = (theme: Theme) => (
   title: {
     [theme.breakpoints.down("sm")]: {
       display: "flex",
+    margin:`auto auto ${theme.spacing(3)}px auto`,
     },
-    marginLeft: theme.spacing(2),
   },
   search: {
     position: "relative",
@@ -78,39 +83,33 @@ const styles = (theme: Theme) => (
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     marginRight: theme.spacing(2),
-    marginLeft: theme.spacing(5),
+    marginLeft: theme.spacing(25),
     width: "100%",
     [theme.breakpoints.down("sm")]: {
       marginLeft: theme.spacing(3),
+      marginBottom:theme.spacing(2),
       width: "100%",
       position: null,
     },
   },
   searchIcon: {
     zIndex: 1,
-    padding: theme.spacing(0, 2),
     height: "100%",
     position: "absolute",
     pointerEvents: "none",
     display: "flex",
     alignItems: "center",
     // justifyContent: "center",
-    [theme.breakpoints.down("sm")]: {
-      right: 0,
-    },
   },
   inputRoot: {},
   inputInput: {
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
-    width: "100%",
+    width:"35ch",
     backgroundColor: "rgb(247, 247, 247)",
     [theme.breakpoints.up("md")]: {
       width: "70ch",
-    },
-    [theme.breakpoints.down("sm")]: {
-      display: "none",
     },
     padding: theme.spacing(2, 0, 2, 0),
   },

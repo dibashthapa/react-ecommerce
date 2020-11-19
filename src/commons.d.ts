@@ -1,5 +1,5 @@
 interface productState {
-  id: number;
+  id?: number;
   price?: string;
   src?: string;
   name?: string;

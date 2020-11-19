@@ -15,8 +15,8 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { routes } from "./routes";
-import styles from "./style";
+import { routes } from "./Dashboard.routes";
+import styles from "./Dashboard.style";
 
 const useStyles = makeStyles(styles);
 interface Props {

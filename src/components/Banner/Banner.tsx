@@ -1,9 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {  Box } from "@material-ui/core";
-import styles from "./style";
+import styles from "./Banner.style";
 import Carousel from "react-multi-carousel";
-import { card } from "../../../data";
+import { card } from "../../data"
 import "react-multi-carousel/lib/styles.css";
 const useStyles = makeStyles(styles);
 

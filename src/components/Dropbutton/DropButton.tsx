@@ -7,7 +7,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
-import styles from "./style";
+import styles from "./DropButton.style";
 
 const useStyles = makeStyles(styles);
 const BootstrapInput = withStyles((theme) => ({
@@ -45,14 +45,12 @@ export const DropButton: React.FC<{ category: Array<string> }> = ({
     <div>
       <FormControl className={classes.formControl}>
         <Select
-          labelId="demo-customized-select-label"
-          id="demo-customized-select"
           value={product}
           onChange={handleChange}
           input={<BootstrapInput />}
           className={classes.button}
           classes={{
-            select: classes.select,
+            select: classes.select
           }}
         >
           {category.map((value, key) => {

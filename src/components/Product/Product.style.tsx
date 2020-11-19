@@ -29,9 +29,7 @@ const styles = (theme: Theme) =>
     },
     grid: {
       height: 352,
-      [theme.breakpoints.down("xs")]: {
-        height: 200,
-      },
+      marginTop:theme.spacing(3)
     },
     media: {
       height: 160,
