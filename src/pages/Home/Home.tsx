@@ -2,7 +2,7 @@ import React from "react";
 import { Banner } from "../../components/Banner/Banner"
 import { Navbar } from "../../components/Navbar/Navbar"
 import { Product } from "../../components/Product/Product"
-export const Home = () => {
+const Home:React.FC = () => {
   return (
     <React.Fragment>
       <Navbar />
@@ -12,4 +12,4 @@ export const Home = () => {
   );
 };
 
-
+export default Home

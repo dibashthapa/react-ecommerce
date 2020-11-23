@@ -48,8 +48,8 @@ const styles = (theme: Theme) =>
     },
     grid6: {
       [theme.breakpoints.down("xs")]: {
-        maxWidth: "40%",
-        flexBasis: "40%",
+        maxWidth: "45%",
+        flexBasis: "45%",
       },
     },
   });

@@ -6,7 +6,6 @@ const styles = (theme: Theme) => (
     padding: "60px",
     boxShadow: "rgba(0, 0, 0, 0.06) 0px 1px 2px",
     backgroundColor: "#fff",
-    marginTop: theme.spacing(12),
   },
   arrowIcon: {
     position: "relative",

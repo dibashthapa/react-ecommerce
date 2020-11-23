@@ -22,7 +22,7 @@ const useStyles = makeStyles(styles);
 interface Props {
   window?: () => Window;
 }
-export const Dashboard = (props: Props) => {
+const Dashboard = (props: Props) => {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -110,3 +110,5 @@ export const Dashboard = (props: Props) => {
 Dashboard.propTypes = {
   window: PropTypes.func,
 };
+
+export default Dashboard

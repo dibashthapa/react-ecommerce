@@ -1,5 +1,0 @@
-export * from "./Banner/Banner"
-export * from "./Dropbutton/DropButton"
-export * from "./Product/Product"
-export * from "./Navbar/Navbar"
-export * from "./Cart/Cart"

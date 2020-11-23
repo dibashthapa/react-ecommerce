@@ -7,14 +7,21 @@ import { Skeleton } from "@material-ui/lab";
 import IconButton from "@material-ui/core/IconButton";
 import {
   Card,
+  Button,
   CardActionArea,
   CardContent,
   CardMedia,
   Typography,
 } from "@material-ui/core";
-import { removeCart , addToCart, addQuantity, subtractQuantity } from "../../store/actions/";
+import {
+  removeCart,
+  addToCart,
+  addQuantity,
+  subtractQuantity,
+} from "../../store/actions/";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { useDispatch, useSelector } from "react-redux";
+import { BrowserRouter , Route , Link } from "react-router-dom"
 const useStyles = makeStyles(styles);
 
 export const Product = () => {
@@ -43,9 +50,9 @@ export const Product = () => {
     const { id, name, price, src } = e.currentTarget.dataset;
     let productDetails = { id: parseInt(id!), name, price, src, count: 0 };
     dispatch(addToCart({ productDetails }));
-    const parentElement = e.currentTarget.parentElement
-    const firstElement = parentElement?.firstElementChild as HTMLElement
-    firstElement.style.visibility = "visible"
+    const parentElement = e.currentTarget.parentElement;
+    const firstElement = parentElement?.firstElementChild as HTMLElement;
+    firstElement.style.visibility = "visible";
   };
 
   const addCount = (e: MouseEvent<HTMLSpanElement>) => {
@@ -58,18 +65,19 @@ export const Product = () => {
     const { id, count } = e.currentTarget.dataset;
     const productDetails = { id: parseInt(id!), count: parseInt(count!) };
     dispatch(subtractQuantity({ productDetails }));
-    const parentElement = e.currentTarget.parentElement?.parentElement?.parentElement
-    const firstElement = parentElement?.firstElementChild as HTMLElement 
-    if (productDetails.count ===0) {
-      dispatch(removeCart({productDetails}))
-    firstElement.style.visibility = "hidden"
+    const parentElement =
+      e.currentTarget.parentElement?.parentElement?.parentElement;
+    const firstElement = parentElement?.firstElementChild as HTMLElement;
+    if (productDetails.count === 0) {
+      dispatch(removeCart({ productDetails }));
+      firstElement.style.visibility = "hidden";
     }
   };
 
   return (
     <React.Fragment>
       <Container>
-        <Grid container spacing={4} className={classes.grid}>
+        <Grid container spacing={4} className={classes.grid} >
           {images ? (
             images.map(function ({ src, name, price }, index: number) {
               return (
@@ -88,24 +96,26 @@ export const Product = () => {
                 >
                   {" "}
                   <CardActionArea>
+                        <Link to={`/product/${index}`} >
                     <CardMedia
                       className={classes.media}
                       image={src}
                       title={name}
                     />
+                  </Link>
                   </CardActionArea>
                   <CardContent>
                     <Typography noWrap>{name}</Typography>
                     <Typography noWrap> {price} </Typography>
                   </CardContent>
                   <CardActions>
-                    <IconButton
+                    <Button
                       color="primary"
                       className={classes.cardNumber}
                       key={index}
                       disableRipple
                       data-id={index}
-                      style = {{visibility:"hidden"}}
+                      style={{ visibility: "hidden" }}
                       data-name={name}
                       data-price={price}
                       data-src={src}
@@ -119,13 +129,16 @@ export const Product = () => {
                         }}
                         data-id={index}
                         onClick={removeCount}
-                        data-count = { 
-                          product.filter(p => p.id === index).map(p => p.count)}
+                        data-count={product
+                          .filter((p) => p.id === index)
+                          .map((p) => p.count)}
                       >
                         -
                       </span>
                       <span style={{ fontSize: "12px", padding: "2px 4px" }}>
-                        {  product.filter(p => p.id === index).map(p => p.count)}
+                        {product
+                          .filter((p) => p.id === index)
+                          .map((p) => p.count)}
                       </span>
                       <span
                         style={{
@@ -138,7 +151,7 @@ export const Product = () => {
                       >
                         +
                       </span>
-                    </IconButton>
+                    </Button>
                     <IconButton
                       color="primary"
                       className={classes.cartButton}
@@ -176,4 +189,3 @@ export const Product = () => {
     </React.Fragment>
   );
 };
-

@@ -17,7 +17,7 @@ interface paramType {
 }
 
 const useStyles = makeStyles(styles);
-export const Product: React.FC = () => {
+const Product: React.FC = () => {
   const { id } = useParams<paramType>();
   console.log(id);
   const classes = useStyles();
@@ -32,7 +32,7 @@ export const Product: React.FC = () => {
           .map((product) => {
             return (
               <React.Fragment>
-                <Grid xs={5} item>
+                <Grid lg={6} xs={12} item>
                   <Card className={classes.root}>
                     <CardMedia
                       className={classes.media}
@@ -41,20 +41,18 @@ export const Product: React.FC = () => {
                     />
                   </Card>
                 </Grid>
-                <Grid xs={5} item>
-                  <Card>
+                <Grid lg={6} item xs={12}>
+                  <Card className= { classes.producteDetails }>
                     <CardContent>
                       <Typography
                         component="p"
                         variant="h4"
-                        className={classes.title}
                       >
                         {product.name}
                       </Typography>
                       <Typography
                         component="p"
                         variant="subtitle2"
-                        className={classes.description}
                       >
                         Spinach (Spinacia oleracea) is a leafy green flowering
                         plant native to central and western Asia. It is of the
@@ -73,3 +71,6 @@ export const Product: React.FC = () => {
     </React.Fragment>
   );
 };
+
+
+export default Product
