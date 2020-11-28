@@ -1,6 +1,7 @@
 import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
+  SEARCH_ITEM,
   ADD_QUANTITY,
   SUB_QUANTITY,
 } from "../actions/actions";
@@ -41,6 +42,14 @@ export const ShoppingReducer = (state = initialState, action: any) => {
           product.id === action.productDetails.id
             ? { ...product, count: product.count! > 0 ? product.count! - 1 : 0 }
             : product
+        ),
+      };
+
+    case SEARCH_ITEM:
+      return {
+        ...state,
+        products: state.products.filter((product) =>
+          product.name?.startsWith(action.productDetails.name)
         ),
       };
 

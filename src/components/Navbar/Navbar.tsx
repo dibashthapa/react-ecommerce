@@ -12,9 +12,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Cart } from "../../components/Cart/Cart";
 import styles from "./Navbar.style";
 import InputBase from "@material-ui/core/InputBase";
-import SearchIcon from "@material-ui/icons/Search";
 import Badge from "@material-ui/core/Badge";
 import { useSelector } from "react-redux";
+import Search from "../Search/Search"
 
 const useStyles = makeStyles(styles);
 interface Props {
@@ -71,22 +71,8 @@ export const Navbar = (props: Props) => {
             <Typography className={classes.title} variant="h6">
               NepBazar
             </Typography>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <IconButton>
-                  <SearchIcon />
-                </IconButton>
-              </div>
-              <InputBase
-                placeholder="Search your products here"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ "aria-label": "search" }}
-              />
-            </div>
 
+            <Search />
             <div className={classes.grow}>
               <div className={classes.sectionDesktop}>
                 <List className={classes.list}>

@@ -3,6 +3,7 @@ import {
   ADD_QUANTITY,
   SUB_QUANTITY,
   EMPTY_CART,
+  SEARCH_ITEM , 
   REMOVE_FROM_CART,
 } from "./actions";
 
@@ -13,6 +14,13 @@ export const addToCart = ({productDetails}: productInterface) => {
     productDetails,
   };
 };
+
+export const searchProduct = ({productDetails}: productInterface) => {
+  return {
+    type: SEARCH_ITEM , 
+    productDetails
+  }
+}
 
 export const removeCart =  ( {productDetails}: productInterface) => {
   return {
