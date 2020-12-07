@@ -13,8 +13,7 @@ cache:
   directories:
     - ~/.npm 
 script:
-  - set -e
-  - npm run build
+  - yarn build
 
 deploy:
   provider: netlify 
