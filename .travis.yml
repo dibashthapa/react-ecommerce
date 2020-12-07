@@ -1,5 +1,23 @@
 language: node_js
-node_js:
-  -15.2.1
-cache: npm 
-  
+node_js: 12.16.1
+
+addons:
+  apt:
+    packages:
+      - libgconf-2-4
+
+install:
+  - yarn install 
+cache:  
+  npm: true
+  directories:
+    - ~/.npm 
+script:
+  - set -e
+  - npm run build
+
+deploy:
+  provider: netlify 
+  site: https://mnrypshop.netlify.com
+  auth: Hm3Nr8eJoFi1GzwTWPCJCQQ9a3NN1NVi5idg6pvvzTQ
+  edge: true
