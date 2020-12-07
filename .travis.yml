@@ -7,25 +7,15 @@ addons:
       - libgconf-2-4
 
 install:
-<<<<<<< HEAD
   - yarn install 
-=======
-  - npm ci
->>>>>>> ae1c02fdfb66e8abe0352850426ea1f5981e4aba
 cache:  
   npm: true
   directories:
     - ~/.npm 
-<<<<<<< HEAD
 script:
   - yarn build
-=======
-before_script:
-  - npm run develop:ci -- --silent &
 script:
-  - set -e
   - npm run build
->>>>>>> ae1c02fdfb66e8abe0352850426ea1f5981e4aba
 
 deploy:
   provider: netlify 
