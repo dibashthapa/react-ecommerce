@@ -7,7 +7,7 @@ addons:
       - libgconf-2-4
 
 install:
-  - yarn install 
+  - npm install 
 cache:  
   npm: true
   directories:
