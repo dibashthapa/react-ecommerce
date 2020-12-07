@@ -1,8 +1,7 @@
 import React from "react";
-import { Drawer, List, ListItem, ListItemText } from "@material-ui/core";
+import { Drawer  , Typography    } from "@material-ui/core";
 import { useSelector } from "react-redux";
-import { Card, Typography, CardMedia, CardActionArea  , Button} from "@material-ui/core";
-import { makeStyles, createStyles } from "@material-ui/core/styles";
+import { makeStyles  } from "@material-ui/core/styles";
 import { Divider } from "@material-ui/core";
 import styles from "./Cart.style";
 
@@ -35,7 +34,7 @@ export const Cart: React.FC = () => {
   const classes = useStyles();
   return (
     <Drawer anchor={"right"} open={open} onClose={() => setOpen(!open)}>
-      {product.map(({ id, name, price, src, count }) => {
+      {product.map(({ id, name, price, src  }) => {
         return (
           <React.Fragment key={id}>
             <div className={classes.cart}>

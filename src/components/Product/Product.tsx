@@ -21,7 +21,7 @@ import {
 } from "../../store/actions/";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter , Route , Link } from "react-router-dom"
+import {  Link } from "react-router-dom"
 const useStyles = makeStyles(styles);
 
 export const Product = () => {
