@@ -1,8 +1,14 @@
 language: node_js
 node_js:
-  -15.2.1
-cache: npm 
+  -10.15.0
+cache:  
+  npm: true
+  directories:
+    - ~/.npm 
+before_script:
+  - npm run develop:ci -- --silent &
 script:
+  - set -e
   - npm run build
 
 deploy:
