@@ -19,6 +19,6 @@ script:
 
 deploy:
   provider: netlify 
-  site: mnrypshop
+  site: 0e42a2dd-2b71-4cb4-ba04-5950e1d1e631
   auth: Hm3Nr8eJoFi1GzwTWPCJCQQ9a3NN1NVi5idg6pvvzTQ
   edge: true
