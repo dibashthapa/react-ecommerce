@@ -2,4 +2,11 @@ language: node_js
 node_js:
   -15.2.1
 cache: npm 
-  
+script:
+  - npm run build
+
+deploy:
+  provider: netlify 
+  site: https://mnrypshop.netlify.com
+  auth: Hm3Nr8eJoFi1GzwTWPCJCQQ9a3NN1NVi5idg6pvvzTQ
+  edge: true
