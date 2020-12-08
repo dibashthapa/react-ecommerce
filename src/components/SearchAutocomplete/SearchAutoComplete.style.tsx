@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-
+import { Link } from "react-router-dom"
 export const SearchResults = styled.div`
     height:auto;
     padding:10px 20px 0 32px;
@@ -17,6 +17,11 @@ export const SearchResults = styled.div`
 export const ResultItem = styled.div`
   font-size:18px;
   padding-bottom:10px;
+`
+
+export const StyledLink = styled(Link)`
+  text-decoration:none;
+  color:#000;
 `
 
 
