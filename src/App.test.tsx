@@ -1,13 +1,22 @@
 import React from "react";
-import { render,  wait , waitForDomChange , cleanup} from "@testing-library/react";
-import images from "./data/image";
-import App from './App'
-
-afterEach(cleanup)  
-
-it("should match the search name",async () => {
-  const { getByText , debug } = render(<App />);
-  expect(getByText("Lime")).toBe(images[0].name)
-  await waitForDomChange()
-  debug() 
+import { render } from "@testing-library/react";
+import store from "./store";
+import { Provider } from "react-redux";
+import SearchAutoComplete from "./components/SearchAutocomplete/SearchAutoComplete";
+import { BrowserRouter, Route } from "react-router-dom";
+import { Product } from "./components/Product/Product";
+import App from "./App";
+it("should match the search name", async () => {
+  const { debug, getByText } = render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <Route>
+          <SearchAutoComplete value={"Lime"} />
+        </Route>
+      </BrowserRouter>
+    </Provider>
+  );
+  expect(getByText("Lime").textContent).toBe("Lime");
+  debug();
 });
+
