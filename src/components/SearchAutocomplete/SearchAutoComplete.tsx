@@ -15,7 +15,7 @@ const SearchAutoComplete: React.FC<Props> = ({ value }) => {
         image
           .filter((p) => p.name.startsWith(value))
           .map((p, index:number) => (
-            <StyledLink to={`/product/${index}`}>
+            <StyledLink to={`/product/${p.name}`}>
               <ResultItem>{p.name}</ResultItem>
             </StyledLink>
           ))}

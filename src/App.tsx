@@ -13,7 +13,7 @@ const App =  ()=> {
         <Suspense fallback={<div />}>
         <Route path="/" exact component={Home} />
         <Route path="/store-manager" component={Dashboard} />
-        <Route path="/product/:id" component={ Product }/>
+        <Route path="/product/:productName" component={ Product }/>
       </Suspense>
       </BrowserRouter>
     </ThemeProvider>

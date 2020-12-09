@@ -13,18 +13,18 @@ import {
 import image from "../../data/image";
 import { useParams } from "react-router-dom";
 interface paramType {
-  id: string;
+  productName: string;
 }
 
 const Product: React.FC = () => {
-  const { id } = useParams<paramType>();
+  const { productName } = useParams<paramType>();
   return (
     <React.Fragment>
       <Navbar />
       <Container>
         <Grid container>
           {image
-            .filter((value, index) => index === parseInt(id))
+            .filter((value) => value.name === productName)
             .map((product) => {
               return (
                 <React.Fragment>
