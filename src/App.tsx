@@ -1,23 +1,21 @@
-import React , { lazy , Suspense  }  from "react";
-import "./App.css";
-import theme from "./theme";
-import { ThemeProvider } from "@material-ui/core";
-import { Route,  BrowserRouter } from "react-router-dom";
-const Home = lazy(() => import('./pages/Home/Home'));
-const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'));
-const Product = lazy(() => import('./pages/Product/Product'));
-const App =  ()=> {
-  return (
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <Suspense fallback={<div />}>
-        <Route path="/" exact component={Home} />
-        <Route path="/store-manager" component={Dashboard} />
-        <Route path="/product/:productName" component={ Product }/>
-      </Suspense>
-      </BrowserRouter>
-    </ThemeProvider>
-  );
-}
+import { ThemeProvider, theme } from '@chakra-ui/react';
+import Routes from './Routes';
+import './App.css';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+const client = new ApolloClient({
+    uri: 'https://pickbazar-api-redq.vercel.app/shop/graphql',
+    cache: new InMemoryCache(),
+});
+
+const App: React.FC = () => {
+    return (
+        <ThemeProvider theme={theme}>
+            <ApolloProvider client={client}>
+                <Routes />
+            </ApolloProvider>
+        </ThemeProvider>
+    );
+};
 
 export default App;

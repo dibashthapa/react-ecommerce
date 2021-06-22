@@ -1,33 +1,6 @@
-*{
-  font-family:"Lato", sans-serif;
-  
-}
-body {
-  background-color: #fafafa;
-}
-.stickit{
-  position: fixed;
-  top:90px;
-}
-
-.fixed {
-  position: fixed;
-}
-.rec.rec-carousel-item.rec-carousel-item-1{
-  margin-left:16px;
-  margin-right: 16px;
-}
-.rec-dot{
-  display:none;
-}
-/* .kyJvRZ{
-  display:none;
-} */
-
-.show {
-  display:block
-}
-
-.hide {
-  display:none
+header.top-header {
+    background-image: url('https://shop-redq.vercel.app/_next/static/images/grocery-f1565ac25de02b9295dccc2da13004ab.png');
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
 }

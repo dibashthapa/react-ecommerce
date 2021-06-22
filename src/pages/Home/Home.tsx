@@ -1,15 +1,23 @@
 import React from "react";
-import { Banner } from "../../components/Banner/Banner"
-import { Navbar } from "../../components/Navbar/Navbar"
-import { Product } from "../../components/Product/Product"
-const Home:React.FC = () => {
+import Navbar from "../../components/Navbar";
+import Header from "../../components/Header";
+import Search from "./Screens/Search";
+import ProductList from "./Screens/ProductList";
+import Sidebar from "../../components/Sidebar";
+import { Grid } from "@chakra-ui/react";
+const Home: React.FC = () => {
   return (
     <React.Fragment>
-      <Navbar />
-      <Banner />
-      <Product />
+      <Header>
+        <Navbar />
+        <Search />
+      </Header>
+      <Grid templateColumns="280px 1fr" backgroundColor="rgb(247, 247, 247)">
+        <Sidebar />
+        <ProductList />
+      </Grid>
     </React.Fragment>
   );
 };
 
-export default Home
+export default Home;

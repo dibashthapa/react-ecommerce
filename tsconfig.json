@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "esnext",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "sourceMap": true,
     "outDir": "./dist/",
     "strict": true,
@@ -20,12 +20,15 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "noEmit": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src"
-  ], 
-  "paths":{
-    "*":["src/commons.d.ts"]
+  ],
+  "paths": {
+    "*": [
+      "src/commons.d.ts"
+    ]
   }
 }
