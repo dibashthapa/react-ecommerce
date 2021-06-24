@@ -39,6 +39,7 @@ import {
     WomenDress,
 } from './AllSvgIcon';
 import { ChevronRightIcon } from '@chakra-ui/icons';
+import { useSearch } from '../../contexts/search/search.provider';
 
 let iconTypes: Dict<React.FC<Props>> = {
     Accessories: Accessories,
@@ -78,11 +79,27 @@ interface subItemProps {
     slug: string;
     title?: string;
 }
+
 const SubItem: React.FC<{ subCategory: subItemProps[]; isOpen: boolean }> = ({
     subCategory,
     isOpen,
 }) => {
     const history = useHistory();
+    const { state, dispatch } = useSearch();
+    const handlePushCategories = (slug: string) => {
+        history.push({
+            pathname: '/search',
+            search: `category=${slug}`,
+            state: { category: slug },
+        });
+        dispatch({
+            type: 'UPDATE',
+            payload: {
+                ...state,
+                category: slug,
+            },
+        });
+    };
     return (
         <Flex direction="column" pl="40px" mx="2">
             {isOpen
@@ -96,7 +113,8 @@ const SubItem: React.FC<{ subCategory: subItemProps[]; isOpen: boolean }> = ({
                               color: 'rgb(0, 158, 127)',
                           }}
                           cursor="pointer"
-                          onClick={() => history.push(slug)}
+                          onClick={() => handlePushCategories(slug)}
+                          key={title}
                       >
                           {title}
                       </chakra.p>
@@ -120,7 +138,7 @@ const NavItem: React.FC<{
                 px="4"
                 mx="2"
                 rounded="md"
-                py="2"
+                pt="1"
                 cursor="pointer"
                 role="group"
                 transition=".20s ease"
@@ -177,4 +195,4 @@ const Sidebar: React.FC = () => {
     );
 };
 
-export default Sidebar;
+export default React.memo(Sidebar);

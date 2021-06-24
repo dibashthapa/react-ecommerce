@@ -1,68 +1,65 @@
-import { useEffect, useState } from 'react';
-import { Box, Text, Grid } from '@chakra-ui/react';
-import { List, ListItem, Button, chakra } from '@chakra-ui/react';
+import { useState, ChangeEventHandler } from 'react';
+import { Box, Text, Grid, Select, SelectField } from '@chakra-ui/react';
+import { List, ListItem, Button } from '@chakra-ui/react';
 import FormModal from '../FormModal';
-import styled from 'styled-components';
+import { languageOptions, dictionaryList, LanguageKey } from '../../languages';
+import { useLanguage } from '../../contexts/language/language.provider';
+import { Nav } from './index.style';
 
-interface Navprops {
-    position: 'fixed' | 'static';
-}
-
-const Nav = styled.nav`
-    background-color: #fff;
-    padding: 10px 0px;
-    position: ${(props: Navprops) =>
-        props.position === 'fixed' ? 'fixed' : 'static'};
-`;
 const Navbar: React.FC = () => {
-    const [open, setOpen] = useState(false);
-    //const [position, setPosition] = useState<'static' | 'fixed'>('static');
+   const [open, setOpen] = useState(false);
+   const { state, dispatch } = useLanguage();
+   console.log();
 
-    //useEffect(() => {
-    //    window.addEventListener('scroll', handleScroll);
-
-    //    return () => {
-    //        window.removeEventListener('scroll', handleScroll);
-    //    };
-    //});
-
-    //const handleScroll = () => {
-    //    const scrollBottom = window.scrollY;
-    //    if (scrollBottom >= 200) {
-    //        setPosition('fixed');
-    //    } else {
-    //        setPosition('static');
-    //    }
-    //};
-    return (
-        <Nav position={'static'}>
-            <FormModal isOpen={open} onClose={() => setOpen(false)} />
-            <Grid gridTemplateColumns="auto 1fr" margin="0 10%">
-                <Box>
-                    <Text
-                        display="flex"
-                        alignItems="center"
-                        fontSize="20px"
-                        fontWeight="bold"
-                    >
-                        PickBazar
-                    </Text>
-                </Box>
-                <Box width="100%" display="flex" justifyContent="flex-end">
-                    <List display="flex" width="xs" alignItems="center">
-                        <ListItem px="4">English</ListItem>
-                        <Button
-                            colorScheme="green"
-                            border="none"
-                            onClick={() => setOpen(true)}
-                        >
-                            Join
-                        </Button>
-                    </List>
-                </Box>
-            </Grid>
-        </Nav>
-    );
+   const handleChangeLanguage: ChangeEventHandler<HTMLSelectElement> = (e) => {
+      const value = e.target.value as LanguageKey;
+      dispatch({
+         type: 'UPDATE',
+         payload: {
+            userLanguage: value,
+         },
+      });
+   };
+   return (
+      <Nav>
+         <FormModal isOpen={open} onClose={() => setOpen(false)} />
+         <Grid gridTemplateColumns="auto 1fr" margin="0 10%">
+            <Box>
+               <Text
+                  display="flex"
+                  alignItems="center"
+                  fontSize="20px"
+                  fontWeight="bold"
+               >
+                  {dictionaryList[state.userLanguage].site}
+               </Text>
+            </Box>
+            <Box width="100%" display="flex" justifyContent="flex-end">
+               <List display="flex" width="xs" alignItems="center">
+                  <ListItem px="4">
+                     <Select
+                        onChange={handleChangeLanguage}
+                        value={state.userLanguage}
+                     >
+                        {Object.entries(languageOptions).map(([id, name]) => (
+                           <option key={id} value={id}>
+                              {name}
+                           </option>
+                        ))}
+                     </Select>
+                  </ListItem>
+                  <Button
+                     colorScheme="green"
+                     border="none"
+                     onClick={() => setOpen(true)}
+                  >
+                     {dictionaryList[state.userLanguage].join}
+                  </Button>
+               </List>
+            </Box>
+         </Grid>
+      </Nav>
+   );
 };
 
 export default Navbar;

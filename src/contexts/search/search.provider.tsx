@@ -1,32 +1,22 @@
-import { useReducer } from 'react';
+import { ReactNode, useContext, useReducer } from 'react';
 import { SearchContext } from './search.context';
+import { reducer } from './search.reducer';
 
-type ActionType = { type: 'UPDATE' | 'RESET'; payload: object };
-
-function reducer(state: any, action: ActionType): any {
-    switch (action.type) {
-        case 'UPDATE':
-            return { ...state, ...action.payload };
-        case 'RESET':
-            return { page: 1 };
-        default:
-            return state;
-    }
+interface ProviderProps {
+    category?: string;
+    query: string;
+    children: ReactNode;
 }
+export const SearchProvider: React.FC<ProviderProps> = ({ category, query, children }) => {
+    const [state, dispatch] = useReducer(reducer, { query: query, category: category });
 
-type SearchProviderProps = {
-    query: any;
+    return <SearchContext.Provider value={{ state, dispatch }}>{children}</SearchContext.Provider>;
 };
 
-export const SearchProvider: React.FC<SearchProviderProps> = ({
-    children,
-    query,
-}) => {
-    const { state, dispatch } = useReducer(reducer, { ...query, page: 1 });
-
-    return (
-        <SearchContext.Provider value={{ state, dispatch }}>
-            {children}
-        </SearchContext.Provider>
-    );
-};
+export function useSearch() {
+    const context = useContext(SearchContext);
+    if (context === undefined) {
+        throw new Error('useSearch must be within a SearchProvider');
+    }
+    return context;
+}

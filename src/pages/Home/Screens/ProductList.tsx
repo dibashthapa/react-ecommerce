@@ -1,83 +1,145 @@
-import styled from "styled-components";
-import { useQuery } from "@apollo/client";
-import { GET_PRODUCT_DETAILS } from "../../../graphql/query/product.query";
-const ProductCardWrapper = styled.div`
-  @media (max-width: 1199px) and (min-width: 991px) {
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 20px;
-  }
-  border: 1px solid rgb(241, 241, 241);
-`;
+import React, { useEffect, useRef } from 'react';
+import { useQuery } from '@apollo/client';
+import { GET_PRODUCT_DETAILS } from '../../../graphql/query/product.query';
+import {
+   ProductGrid,
+   ProductCardWrapper,
+   ProductImg,
+   Footer,
+   ProductCard,
+} from './ProductList.style';
+import { Flex, Button, useColorModeValue } from '@chakra-ui/react';
+import { useSearch } from '../../../contexts/search/search.provider';
+import { useHistory } from 'react-router-dom';
+interface Props {
+   value: string;
+   category?: string;
+}
 
-const ProductCard = styled.div`
-    height:auto;
-    width:100%;
-    background-color:rgb(255,255,255);
-    position:relative , 
-    border-radius:6px;
-    cursor:pointer;
+const ProductList: React.FC = () => {
+   const {
+      state: { query, category },
+   } = useSearch();
 
-    .image{
-    height: 240px;
-    padding: 5px;
-    position: relative;
-    text-align: center;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center
-    }
-`;
+   const history = useHistory<null | undefined | Props>();
+   const targetRef = useRef<HTMLDivElement | null>(null);
+   const { data, fetchMore } = useQuery(GET_PRODUCT_DETAILS, {
+      variables: {
+         limit: 20,
+         offset: 0,
+         text: history.location ? history?.location?.state?.value : '',
+         category: history.location ? history?.location?.state?.category : '',
+      },
+   });
 
-const ProductGrid = styled.div`
-  display: grid;
-  margin: 20px 10px;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 10px;
-`;
+   useEffect(() => {
+      const target = targetRef.current;
+      if (
+         history?.location.state &&
+         (query.length > 0 || category !== undefined)
+      ) {
+         window.scrollTo({
+            top: target!.offsetHeight,
+            behavior: 'smooth',
+         });
+      }
+   }, [query, category]);
 
-const ProductImg = styled.img`
-  height: 100%;
-  max-width: 100%;
-`;
+   const scheme = 'green';
+   const step2 = useColorModeValue('500', '700');
+   const step3 = useColorModeValue('300', '500');
 
-const Footer = styled.div`
-  padding: 20px 25px 20px;
-
-  .product-title {
-    font-family: Lato, sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: rgb(13, 17, 54);
-    margin: 0px 0px 7px;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-`;
-const ProductList = () => {
-  const { data } = useQuery(GET_PRODUCT_DETAILS);
-  return (
-    <ProductGrid>
-      {data?.products?.items?.map(
-        ({ image, title }: { image: string; title: string }, index: number) => (
-          <ProductCardWrapper key={index}>
-            <ProductCard>
-              <div className="image">
-                <ProductImg src={image} />
-              </div>
-              <Footer>
-                <h1 className="product-title">{title}</h1>
-              </Footer>
-            </ProductCard>
-          </ProductCardWrapper>
-        )
-      )}
-    </ProductGrid>
-  );
+   const loadMore = () => {
+      fetchMore({
+         variables: {
+            limit: 8,
+            offset: Number(data.products.items.length),
+         },
+         updateQuery: (prev, { fetchMoreResult }) => {
+            if (!fetchMoreResult) {
+               return prev;
+            }
+            return {
+               products: {
+                  __typename: prev.products.__typename,
+                  items: [
+                     ...prev.products.items,
+                     ...fetchMoreResult.products.items,
+                  ],
+                  hasMore: fetchMoreResult.products.hasMore,
+               },
+            };
+         },
+      });
+   };
+   return (
+      <div ref={targetRef}>
+         <ProductGrid>
+            {data?.products?.items?.map(
+               (
+                  {
+                     image,
+                     title,
+                     price,
+                  }: { image: string; title: string; price: string },
+                  index: number
+               ) => (
+                  <ProductCardWrapper key={index}>
+                     <ProductCard>
+                        <div className="image">
+                           <ProductImg src={image} />
+                        </div>
+                        <Footer>
+                           <h1 className="product-title">{title}</h1>
+                           <p>{price}</p>
+                        </Footer>
+                     </ProductCard>
+                  </ProductCardWrapper>
+               )
+            )}
+         </ProductGrid>
+         {data?.products?.hasMore && (
+            <Flex pb="20px" justify="center">
+               <Button
+                  backgroundColor="white"
+                  color="black.blackAlpha.200"
+                  fontWeight="400"
+                  fontSize="14px"
+                  size={'md'}
+                  rounded={'md'}
+                  _focus={{
+                     outline: 'none',
+                  }}
+                  fontFamily="Lato , sans-serif"
+                  transition="background 0.8s"
+                  backgroundPosition="center"
+                  _hover={{
+                     bgColor: `${scheme}.${step2}`,
+                     bgGradient: `radial(circle, transparent 1%, ${scheme}.${step2} 1%)`,
+                     bgPos: 'center',
+                     color: 'white',
+                     backgroundSize: '15000%',
+                  }}
+                  _active={{
+                     bgColor: `${scheme}.${step3}`,
+                     backgroundSize: '100%',
+                     transition: 'background 0s',
+                  }}
+                  margin="0px"
+                  border="0px"
+                  flexShrink={0}
+                  cursor="pointer"
+                  outline="0px"
+                  paddingLeft="30px"
+                  paddingRight="30px"
+                  onClick={loadMore}
+               >
+                  Load More
+               </Button>
+            </Flex>
+         )}
+      </div>
+   );
 };
 
-export default ProductList;
+export default React.memo(ProductList);

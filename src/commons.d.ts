@@ -1,16 +1,15 @@
 interface productState {
-  id?: number;
-  price?: string;
-  src?: string;
-  name?: string;
-  count?: number;
+    id: number;
+    price: string;
+    src: string;
+    name: string;
+    count: number;
 }
 
 interface defaultState {
-  products: Array<productState>;
+    products: Array<productState>;
 }
 
-
 interface productInterface {
-  productDetails:productState
+    productDetails: productState;
 }

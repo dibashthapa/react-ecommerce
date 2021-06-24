@@ -1,6 +1,7 @@
-import { ThemeProvider, theme } from '@chakra-ui/react';
+import { ThemeProvider } from '@chakra-ui/react';
 import Routes from './Routes';
 import './App.css';
+import theme from './themes';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 const client = new ApolloClient({

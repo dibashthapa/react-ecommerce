@@ -1,19 +1,30 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const GET_PRODUCT_DETAILS = gql`
-  query {
-    products(limit: 200) {
-      items {
-        title
-        id
-        type
-        price
-        image
-        description
-        gallery {
-          url
-        }
+   query getProducts(
+      $limit: Int
+      $offset: Int
+      $category: String
+      $text: String
+   ) {
+      products(
+         limit: $limit
+         offset: $offset
+         category: $category
+         text: $text
+      ) {
+         items {
+            title
+            id
+            type
+            price
+            image
+            description
+            gallery {
+               url
+            }
+         }
+         hasMore
       }
-    }
-  }
+   }
 `;
