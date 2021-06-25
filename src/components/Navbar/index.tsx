@@ -1,5 +1,5 @@
 import { useState, ChangeEventHandler } from 'react';
-import { Box, Text, Grid, Select, SelectField } from '@chakra-ui/react';
+import { Box, Text, Grid, Select } from '@chakra-ui/react';
 import { List, ListItem, Button } from '@chakra-ui/react';
 import FormModal from '../FormModal';
 import { languageOptions, dictionaryList, LanguageKey } from '../../languages';

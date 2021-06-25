@@ -101,6 +101,7 @@ export const Item = styled.div`
         flex-direction:column;
         margin-left:15px;
 
+   }
         .item-name {
             color: rgb(13, 17, 54);
             margin-bottom: 0px;
@@ -134,5 +135,4 @@ export const Item = styled.div`
             transition: all 0.4s ease 0s;
             background-color: transparent;
         }
-   }
 `;

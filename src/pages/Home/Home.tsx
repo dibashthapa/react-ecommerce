@@ -4,7 +4,6 @@ import Header from '../../components/Header';
 import Search from './Screens/Search';
 import ProductList from './Screens/ProductList';
 import Sidebar from '../../components/Sidebar';
-import { Grid } from '@chakra-ui/react';
 import Cart from '../../components/Cart';
 import { MainContentArea } from './index.style';
 

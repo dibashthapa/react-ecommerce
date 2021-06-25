@@ -4,11 +4,9 @@ import { GET_PRODUCT_DETAILS } from '../../../graphql/query/product.query';
 import { ProductGrid } from './ProductList.style';
 import { Flex, Button, useColorModeValue } from '@chakra-ui/react';
 import { useSearch } from '../../../contexts/search/search.provider';
-import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useLanguage } from '../../../contexts/language/language.provider';
 import Product, { ProductProps } from '../../../components/Products';
-Function;
 interface Props {
    value: string;
    category?: string;
@@ -18,7 +16,6 @@ const ProductList: React.FC = () => {
    const {
       state: { query, category },
    } = useSearch();
-   const state = useSelector((state) => state);
 
    const {
       state: { userLanguage },
@@ -87,6 +84,7 @@ const ProductList: React.FC = () => {
                      price={items.price}
                      title={items.title}
                      description={items.description}
+                     id={items.id}
                   />
                )
             )}

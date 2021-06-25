@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { RiShoppingCart2Line } from 'react-icons/ri';
 import {
    ProductCardWrapper,
-   ProductImg,
    Footer,
    ProductCard,
    CartButton,
@@ -10,33 +9,29 @@ import {
 import { LanguageKey } from '../../languages';
 import { Flex, Image } from '@chakra-ui/react';
 import ProductModal from './ProductModal';
+import { getNepaliPrice } from '../../helpers/convertLanguage';
+import { useProductDispatch } from '../../store';
+import { ADD_TO_CART } from '../../store/actions/actions';
 
 export interface ProductProps {
    image: string;
    title: string;
    price: string;
    description: string;
+   id: number;
    userLanguage: LanguageKey;
 }
-const Product: React.FC<ProductProps> = ({
-   image,
-   title,
-   price,
-   description,
-   userLanguage,
-}) => {
+const Product: React.FC<ProductProps> = (product) => {
    const [open, setOpen] = useState(false);
+   const dispatch = useProductDispatch();
 
-   const getNepaliPrice = (nums: number) => {
-      const numbers = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
-      const engNum = String(nums).split('').map(convert).join('');
-
-      function convert(num: string) {
-         return numbers[Number(num)];
-      }
-
-      return engNum;
+   const addToCart = () => {
+      dispatch({
+         type: ADD_TO_CART,
+         productDetails: { ...product, count: 0 },
+      });
    };
+   const { image, title, price, description, userLanguage } = product;
    return (
       <ProductCardWrapper>
          <ProductModal
@@ -63,7 +58,7 @@ const Product: React.FC<ProductProps> = ({
                         ? `${price}$`
                         : `रू ${getNepaliPrice(Number(price) * 118.75)}`}
                   </p>
-                  <CartButton>
+                  <CartButton onClick={addToCart}>
                      <RiShoppingCart2Line />
                      &nbsp; Cart
                   </CartButton>

@@ -1,9 +1,12 @@
-import { createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import { ShoppingReducer } from './reducers';
-const store = createStore(
-    ShoppingReducer,
-    (window && (window as any)).__REDUX_DEVTOOLS_EXTENSION__ &&
-        (window && (window as any)).__REDUX_DEVTOOLS_EXTENSION__()
-);
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
+const store = configureStore({
+   reducer: ShoppingReducer,
+});
+
+export type ProductDispatch = typeof store.dispatch;
+export const useProductDispatch = () => useDispatch<ProductDispatch>();
+export const useProductSelector: TypedUseSelectorHook<rootState> = useSelector;
 export default store;
