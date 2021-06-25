@@ -5,6 +5,8 @@ import Search from './Screens/Search';
 import ProductList from './Screens/ProductList';
 import Sidebar from '../../components/Sidebar';
 import { Grid } from '@chakra-ui/react';
+import Cart from '../../components/Cart';
+import { MainContentArea } from './index.style';
 
 const Home: React.FC = () => {
    return (
@@ -13,10 +15,11 @@ const Home: React.FC = () => {
             <Navbar />
             <Search />
          </Header>
-         <Grid templateColumns="280px 1fr" backgroundColor="rgb(247, 247, 247)">
+         <MainContentArea>
             <Sidebar />
             <ProductList />
-         </Grid>
+         </MainContentArea>
+         <Cart />
       </React.Fragment>
    );
 };

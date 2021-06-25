@@ -1,16 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_PRODUCT_DETAILS } from '../../../graphql/query/product.query';
-import {
-   ProductGrid,
-   ProductCardWrapper,
-   ProductImg,
-   Footer,
-   ProductCard,
-} from './ProductList.style';
+import { ProductGrid } from './ProductList.style';
 import { Flex, Button, useColorModeValue } from '@chakra-ui/react';
 import { useSearch } from '../../../contexts/search/search.provider';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useLanguage } from '../../../contexts/language/language.provider';
+import Product, { ProductProps } from '../../../components/Products';
+Function;
 interface Props {
    value: string;
    category?: string;
@@ -20,6 +18,11 @@ const ProductList: React.FC = () => {
    const {
       state: { query, category },
    } = useSearch();
+   const state = useSelector((state) => state);
+
+   const {
+      state: { userLanguage },
+   } = useLanguage();
 
    const history = useHistory<null | undefined | Props>();
    const targetRef = useRef<HTMLDivElement | null>(null);
@@ -76,25 +79,15 @@ const ProductList: React.FC = () => {
       <div ref={targetRef}>
          <ProductGrid>
             {data?.products?.items?.map(
-               (
-                  {
-                     image,
-                     title,
-                     price,
-                  }: { image: string; title: string; price: string },
-                  index: number
-               ) => (
-                  <ProductCardWrapper key={index}>
-                     <ProductCard>
-                        <div className="image">
-                           <ProductImg src={image} />
-                        </div>
-                        <Footer>
-                           <h1 className="product-title">{title}</h1>
-                           <p>{price}</p>
-                        </Footer>
-                     </ProductCard>
-                  </ProductCardWrapper>
+               (items: ProductProps, index: number) => (
+                  <Product
+                     key={index}
+                     userLanguage={userLanguage}
+                     image={items.image}
+                     price={items.price}
+                     title={items.title}
+                     description={items.description}
+                  />
                )
             )}
          </ProductGrid>
