@@ -41,8 +41,7 @@ const Product: React.FC<ProductProps> = (product) => {
 
       return Number(count);
    };
-   const addCart: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-      e.stopPropagation();
+   const addCart = () => {
       const prod = { ...product, count: 1 };
       dispatch(addToCart(prod));
    };

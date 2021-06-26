@@ -16,7 +16,7 @@ interface Props {
    title: string;
    description: string;
    image: string;
-   addCart: (e) => void;
+   addCart: () => void;
    getQuantity: () => number;
    increaseQuantity: () => void;
    decreaseQuantity: () => void;

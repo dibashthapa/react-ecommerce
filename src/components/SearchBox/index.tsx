@@ -1,10 +1,5 @@
 import { MouseEventHandler } from 'react';
-import {
-   chakra,
-   InputGroup,
-   InputRightElement,
-   InputLeftElement,
-} from '@chakra-ui/react';
+import { chakra, InputGroup, InputRightElement } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import { SearchInput, DesktopSearch } from './index.style';
 import Button from '../Button';

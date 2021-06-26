@@ -43,6 +43,7 @@ const ProductList: React.FC = () => {
             behavior: 'smooth',
          });
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [query, category]);
 
    const scheme = 'green';
