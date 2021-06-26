@@ -1,22 +1,22 @@
-import MobileDetect from "mobile-detect";
+import MobileDetect from 'mobile-detect';
 
-export function useDeviceType(userAgent: string) {
-  const md = new MobileDetect(userAgent);
-  let mobile = false,
-    tablet = false,
-    desktop = false;
+export function useDeviceType() {
+   const md = new MobileDetect(navigator.userAgent);
+   let mobile = false,
+      tablet = false,
+      desktop = false;
 
-  if (md.tablet()) {
-    tablet = true;
-  } else if (md.mobile()) {
-    mobile = true;
-  } else {
-    desktop = true;
-  }
+   if (md.tablet()) {
+      tablet = true;
+   } else if (md.mobile()) {
+      mobile = true;
+   } else {
+      desktop = true;
+   }
 
-  return {
-    mobile,
-    tablet,
-    desktop,
-  };
+   return {
+      mobile,
+      tablet,
+      desktop,
+   };
 }

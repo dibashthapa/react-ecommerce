@@ -10,6 +10,13 @@ export const ProductModalImage = styled.div`
    justify-content: center;
    align-items: center;
    max-height: 100%;
+   position: relative;
+
+   @media screen and (min-width: 991px) {
+      svg {
+         display: none;
+      }
+   }
 
    img {
       height: 100%;

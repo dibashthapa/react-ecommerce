@@ -6,6 +6,6 @@ export const ProductGrid = styled.div`
       gap: 10px;
    }
    display: grid;
-
+   margin: 20px 0px;
    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 `;

@@ -1,6 +1,7 @@
 import { ProductModalImage, DescriptionWrapper } from './ProductModal.style';
 import { CartButton, CounterBox } from './index.style';
 import { RiShoppingCart2Line } from 'react-icons/ri';
+import { CloseIcon } from '@chakra-ui/icons';
 import {
    Modal,
    ModalBody,
@@ -15,7 +16,7 @@ interface Props {
    title: string;
    description: string;
    image: string;
-   addCart: () => void;
+   addCart: (e) => void;
    getQuantity: () => number;
    increaseQuantity: () => void;
    decreaseQuantity: () => void;
@@ -33,13 +34,25 @@ const ProductModal: React.FC<Props> = ({
    decreaseQuantity,
 }) => {
    return (
-      <Modal isOpen={open} onClose={() => setOpen(false)} isCentered size="4xl">
+      <Modal
+         isOpen={open}
+         onClose={() => setOpen(false)}
+         isCentered
+         size="4xl"
+         scrollBehavior="inside"
+      >
          <ModalOverlay />
          <ModalBody>
             <ModalContent>
-               <Grid gridTemplateColumns="repeat(2,1fr)">
+               <Grid gridTemplateColumns={{ lg: 'repeat(2,1fr)' }}>
                   <ProductModalImage>
                      <img src={image} alt="" />
+                     <CloseIcon
+                        position="absolute"
+                        top="10px"
+                        right="10px"
+                        onClick={() => setOpen(false)}
+                     />
                   </ProductModalImage>
                   <DescriptionWrapper>
                      <div className="product-info">

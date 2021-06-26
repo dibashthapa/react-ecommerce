@@ -41,7 +41,8 @@ const Product: React.FC<ProductProps> = (product) => {
 
       return Number(count);
    };
-   const addCart = () => {
+   const addCart: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+      e.stopPropagation();
       const prod = { ...product, count: 1 };
       dispatch(addToCart(prod));
    };
@@ -59,6 +60,11 @@ const Product: React.FC<ProductProps> = (product) => {
          dispatch(subtractQuantity(prod));
       }
    };
+
+   const onClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
+      e.stopPropagation();
+      setOpen(true);
+   };
    const { image, title, price, description, userLanguage } = product;
    return (
       <ProductCardWrapper>
@@ -74,7 +80,7 @@ const Product: React.FC<ProductProps> = (product) => {
             decreaseQuantity={decreaseQuantity}
          />
          <ProductCard>
-            <div className="image" onClick={() => setOpen(true)}>
+            <div className="image" onClick={onClick}>
                <Image
                   fallbackSrc="/static/images/notfound.png"
                   src={image}

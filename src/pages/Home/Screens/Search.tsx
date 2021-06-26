@@ -43,7 +43,12 @@ const Search: React.FC = () => {
             <Title> {dictionaryList[userLanguage].title}</Title>
             <SubTitle>{dictionaryList[userLanguage].subtitle}</SubTitle>
          </Box>
-         <Box width="100%" display="flex" justifyContent="center">
+         <Box
+            width="100%"
+            display="flex"
+            justifyContent="center"
+            margin={{ sm: '40px 0px' }}
+         >
             <HStack display={mobileNav.isOpen ? 'none' : 'flex'} width="lg">
                <SearchBox
                   onClick={handleClickSearchButton}

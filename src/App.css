@@ -1,6 +1,12 @@
+@media (min-width: 991px) {
+   header.top-header {
+      background-position: center;
+   }
+}
+
 header.top-header {
    background-image: url('https://shop-redq.vercel.app/_next/static/images/grocery-f1565ac25de02b9295dccc2da13004ab.png');
+   background-position: initial;
    height: 100vh;
-   background-position: center;
    background-size: cover;
 }
