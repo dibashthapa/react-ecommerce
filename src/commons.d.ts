@@ -4,6 +4,7 @@ interface rootState {
    image: string;
    title: string;
    price: string;
+   unit: string;
 }
 
 type CartActions =

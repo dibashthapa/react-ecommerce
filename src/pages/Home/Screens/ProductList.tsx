@@ -85,6 +85,7 @@ const ProductList: React.FC = () => {
                      title={items.title}
                      description={items.description}
                      id={items.id}
+                     unit={items.unit}
                   />
                )
             )}

@@ -1,6 +1,6 @@
 import { ProductModalImage, DescriptionWrapper } from './ProductModal.style';
-import { CartButton } from './index.style';
-
+import { CartButton, CounterBox } from './index.style';
+import { RiShoppingCart2Line } from 'react-icons/ri';
 import {
    Modal,
    ModalBody,
@@ -15,6 +15,10 @@ interface Props {
    title: string;
    description: string;
    image: string;
+   addCart: () => void;
+   getQuantity: () => number;
+   increaseQuantity: () => void;
+   decreaseQuantity: () => void;
 }
 
 const ProductModal: React.FC<Props> = ({
@@ -23,6 +27,10 @@ const ProductModal: React.FC<Props> = ({
    title,
    description,
    image,
+   addCart,
+   getQuantity,
+   increaseQuantity,
+   decreaseQuantity,
 }) => {
    return (
       <Modal isOpen={open} onClose={() => setOpen(false)} isCentered size="4xl">
@@ -39,7 +47,18 @@ const ProductModal: React.FC<Props> = ({
                         <div className="product-weight">1 lb</div>
                         <p className="product-description">{description}</p>
                         <div className="product-cart">
-                           <CartButton>Cart</CartButton>
+                           {getQuantity() > 0 ? (
+                              <CounterBox>
+                                 <button onClick={increaseQuantity}>+</button>
+                                 <span>{getQuantity()}</span>
+                                 <button onClick={decreaseQuantity}>-</button>
+                              </CounterBox>
+                           ) : (
+                              <CartButton onClick={addCart}>
+                                 <RiShoppingCart2Line />
+                                 &nbsp; Cart
+                              </CartButton>
+                           )}
                         </div>
                      </div>
                   </DescriptionWrapper>

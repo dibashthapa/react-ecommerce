@@ -26,6 +26,7 @@ export interface ProductProps {
    description: string;
    id: number;
    userLanguage: LanguageKey;
+   unit: string;
 }
 const Product: React.FC<ProductProps> = (product) => {
    const [open, setOpen] = useState(false);
@@ -67,6 +68,10 @@ const Product: React.FC<ProductProps> = (product) => {
             title={title}
             description={description}
             image={image}
+            addCart={addCart}
+            getQuantity={getQuantity}
+            increaseQuantity={increaseQuantity}
+            decreaseQuantity={decreaseQuantity}
          />
          <ProductCard>
             <div className="image" onClick={() => setOpen(true)}>

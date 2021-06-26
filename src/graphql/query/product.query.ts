@@ -19,6 +19,7 @@ export const GET_PRODUCT_DETAILS = gql`
             type
             price
             image
+            unit
             description
             gallery {
                url
