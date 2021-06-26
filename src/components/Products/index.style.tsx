@@ -104,3 +104,32 @@ export const Footer = styled.div`
       white-space: nowrap;
    }
 `;
+
+export const CounterBox = styled.div`
+   display: flex;
+   background-color: rgb(0, 158, 127);
+   color: #fff;
+   font-size: 15px;
+   font-weight: 700;
+   border-radius: 50px;
+   justify-content: space-between;
+   align-items: center;
+   overflow: hidden;
+   flex-shrink: 0;
+   width: 104px;
+   height: 36px;
+
+   button {
+      border: none;
+      background-color: transparent;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+   }
+`;

@@ -5,7 +5,7 @@ import {
    SUB_QUANTITY,
 } from '../actions/actions';
 
-interface defaultState {
+export interface defaultState {
    products: rootState[];
 }
 
@@ -21,11 +21,11 @@ export const ShoppingReducer = (
       case ADD_TO_CART:
          return {
             ...state,
-            products: state.products.some(
+            products: state.products.find(
                (p) => p.id === action.productDetails.id
             )
-               ? [...state.products, action.productDetails]
-               : [...state.products],
+               ? [...state.products]
+               : [...state.products, action.productDetails],
          };
       case REMOVE_FROM_CART:
          return {
@@ -50,7 +50,7 @@ export const ShoppingReducer = (
                product.id === action.productDetails.id
                   ? {
                        ...product,
-                       count: product.count! > 0 ? product.count! - 1 : 0,
+                       count: action.productDetails.count,
                     }
                   : product
             ),

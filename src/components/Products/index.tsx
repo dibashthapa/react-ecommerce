@@ -5,13 +5,19 @@ import {
    Footer,
    ProductCard,
    CartButton,
+   CounterBox,
 } from './index.style';
 import { LanguageKey } from '../../languages';
 import { Flex, Image } from '@chakra-ui/react';
 import ProductModal from './ProductModal';
 import { getNepaliPrice } from '../../helpers/convertLanguage';
-import { useProductDispatch } from '../../store';
-import { ADD_TO_CART } from '../../store/actions/actions';
+import { useProductDispatch, useProductSelector } from '../../store';
+import {
+   addToCart,
+   addQuantity,
+   subtractQuantity,
+   removeCart,
+} from '../../store/actions';
 
 export interface ProductProps {
    image: string;
@@ -24,12 +30,33 @@ export interface ProductProps {
 const Product: React.FC<ProductProps> = (product) => {
    const [open, setOpen] = useState(false);
    const dispatch = useProductDispatch();
+   const stateProducts = useProductSelector((state) => state.products);
 
-   const addToCart = () => {
-      dispatch({
-         type: ADD_TO_CART,
-         productDetails: { ...product, count: 0 },
-      });
+   const getQuantity = () => {
+      const count = stateProducts
+         .filter((p) => p.id === product.id)
+         .map((p) => p.count)
+         .join('');
+
+      return Number(count);
+   };
+   const addCart = () => {
+      const prod = { ...product, count: 1 };
+      dispatch(addToCart(prod));
+   };
+
+   const increaseQuantity = () => {
+      const prod = { ...product, count: getQuantity() + 1 };
+      dispatch(addQuantity(prod));
+   };
+
+   const decreaseQuantity = () => {
+      const prod = { ...product, count: getQuantity() - 1 };
+      if (getQuantity() - 1 === 0) {
+         dispatch(removeCart({ ...product, count: 1 }));
+      } else {
+         dispatch(subtractQuantity(prod));
+      }
    };
    const { image, title, price, description, userLanguage } = product;
    return (
@@ -58,10 +85,19 @@ const Product: React.FC<ProductProps> = (product) => {
                         ? `${price}$`
                         : `रू ${getNepaliPrice(Number(price) * 118.75)}`}
                   </p>
-                  <CartButton onClick={addToCart}>
-                     <RiShoppingCart2Line />
-                     &nbsp; Cart
-                  </CartButton>
+
+                  {getQuantity() > 0 ? (
+                     <CounterBox>
+                        <button onClick={increaseQuantity}>+</button>
+                        <span>{getQuantity()}</span>
+                        <button onClick={decreaseQuantity}>-</button>
+                     </CounterBox>
+                  ) : (
+                     <CartButton onClick={addCart}>
+                        <RiShoppingCart2Line />
+                        &nbsp; Cart
+                     </CartButton>
+                  )}
                </Flex>
             </Footer>
          </ProductCard>

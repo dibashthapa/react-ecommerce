@@ -2,9 +2,8 @@ interface rootState {
    id: number;
    count: number;
    image: string;
-   name: string;
+   title: string;
    price: string;
-   weight: string;
 }
 
 type CartActions =
