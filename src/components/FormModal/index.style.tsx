@@ -33,7 +33,7 @@ export const FormWrapper = styled.div`
 
 export const Input = styled.input`
    display: block;
-   width: -webkit-fill-available;
+   width: fill-available;
    padding: 0px 18px;
    appearance: none;
    font-family: Lato, sans-serif;
