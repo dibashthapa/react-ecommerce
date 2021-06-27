@@ -1,12 +1,24 @@
 import React, { ReactNode } from 'react';
-import { Flex, Icon, FlexProps, chakra, useDisclosure } from '@chakra-ui/react';
+import {
+   Flex,
+   Icon,
+   FlexProps,
+   chakra,
+   useDisclosure,
+   Drawer,
+   DrawerOverlay,
+   DrawerBody,
+   DrawerContent,
+   DrawerHeader,
+} from '@chakra-ui/react';
+import { SmallCloseIcon } from '@chakra-ui/icons';
 import Sticky from 'react-stickynode';
 import { Category, IconProps as Props } from '../../interfaces';
 import { useQuery } from '@apollo/client';
 import { GET_CATEGORIES } from '../../graphql/query/category.query';
 import { Dict } from '../../types';
 import { useHistory } from 'react-router-dom';
-import { SidebarWrapper } from './index.style';
+import { SidebarWrapper, CategoryDrawerWrapper } from './index.style';
 import {
    Accessories,
    BathOil,
@@ -165,37 +177,67 @@ const NavItem: React.FC<{
 const SidebarContent: React.FC = () => {
    const { data } = useQuery(GET_CATEGORIES);
    return (
-      <Flex
-         direction="column"
-         as="div"
-         fontSize="sm"
-         aria-label="Main Navigation"
-         height="100vh"
-         backgroundColor="#fff"
-         display={{ sm: 'none', xs: 'none' }}
-      >
-         {data?.categories?.map((category: Category, index: number) => (
-            <NavItem
-               icon={iconTypes[category.icon]}
-               key={index}
-               subCategory={category.children}
-            >
-               <chakra.div marginLeft="10px">
-                  <p>{category.title}</p>
-               </chakra.div>
-            </NavItem>
-         ))}
-      </Flex>
+      <>
+         <Flex
+            direction="column"
+            as="div"
+            fontSize="sm"
+            aria-label="Main Navigation"
+            height="100vh"
+            backgroundColor="#fff"
+            display={{ sm: 'none', xs: 'none' }}
+         >
+            {data?.categories?.map((category: Category, index: number) => (
+               <NavItem
+                  icon={iconTypes[category.icon]}
+                  key={index}
+                  subCategory={category.children}
+               >
+                  <chakra.div marginLeft="10px">
+                     <p>{category.title}</p>
+                  </chakra.div>
+               </NavItem>
+            ))}
+         </Flex>
+      </>
+   );
+};
+
+const CategoryDrawer = () => {
+   const { isOpen, onClose, onOpen } = useDisclosure();
+   return (
+      <CategoryDrawerWrapper>
+         <p onClick={onOpen}>Categories</p>
+         <Drawer isOpen={isOpen} onClose={onClose} placement="bottom" size="sm">
+            <DrawerOverlay />
+            <DrawerContent>
+               <DrawerHeader>
+                  <SmallCloseIcon
+                     onClick={onClose}
+                     position="absolute"
+                     right="20px"
+                     cursor="pointer"
+                  />
+               </DrawerHeader>
+               <DrawerBody>
+                  <SidebarContent />
+               </DrawerBody>
+            </DrawerContent>
+         </Drawer>
+      </CategoryDrawerWrapper>
    );
 };
 
 const Sidebar: React.FC = () => {
    return (
-      <SidebarWrapper>
-         <Sticky enabled={true}>
-            <SidebarContent />
-         </Sticky>
-      </SidebarWrapper>
+      <>
+         <SidebarWrapper>
+            <Sticky enabled={true}>
+               <SidebarContent />
+            </Sticky>
+         </SidebarWrapper>
+         <CategoryDrawer />
+      </>
    );
 };
 

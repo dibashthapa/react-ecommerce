@@ -7,7 +7,6 @@ export const Nav = styled.nav`
          padding: 0px;
       }
    }
-
    background-color: #fff;
    padding: 10px 0px;
 `;

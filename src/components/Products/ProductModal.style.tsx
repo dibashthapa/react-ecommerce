@@ -18,6 +18,12 @@ export const ProductModalImage = styled.div`
       }
    }
 
+   @media screen and (max-width: 450px) {
+      & {
+         height: 150px;
+      }
+   }
+
    img {
       height: 100%;
       max-width: 100%;
@@ -31,6 +37,12 @@ export const DescriptionWrapper = styled.div`
    flex-direction:column;
    align-items:center;
    justify-content:center;
+   @media screen and (max-width: 450px) {
+        .product-description {
+            height:80px;
+            overflow-y:auto;
+        }
+   }
 
    .product-info {
       padding: 50px;
@@ -51,11 +63,13 @@ export const DescriptionWrapper = styled.div`
          color:rgb(119,121,140);
    }
 
+
    .product-description {
          font-family:Lato, sans-serif;
          font-weight:500;
          color:rgb(66,69,97);
          margin-top:30px;
+
    }
 
    .product-cart {
