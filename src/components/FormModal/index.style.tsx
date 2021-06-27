@@ -33,8 +33,8 @@ export const FormWrapper = styled.div`
 
 export const Input = styled.input`
    display: block;
-   width: 100%;
-   padding-left: 18px;
+   width: -webkit-fill-available;
+   padding: 0px 18px;
    appearance: none;
    font-family: Lato, sans-serif;
    font-size: 15px;
@@ -52,7 +52,7 @@ export const Input = styled.input`
 `;
 
 export const Divider = styled.div`
-   padding: 15px 18px;
+   padding: 15px 0px;
    width: 100%;
    display: flex;
    justify-content: center;

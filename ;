@@ -42,7 +42,7 @@ const FormModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                         Login with your email & password
                      </span>
 
-                     <form onSubmit={(e) => e.preventDefault()}>
+                     <form>
                         <Input type="text" placeholder="demo@demo.com" />
                         <Input type="text" placeholder="demo" />
                         <Button>Continue</Button>
