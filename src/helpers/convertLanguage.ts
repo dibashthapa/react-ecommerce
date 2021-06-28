@@ -4,7 +4,7 @@ export const getNepaliPrice = (nums: string) => {
    const engNum = String(price).split('').map(convert).join('');
 
    function convert(num: string) {
-      if (num == '.') {
+      if (num === '.') {
          return '.';
       } else {
          return numbers[Number(num)];
