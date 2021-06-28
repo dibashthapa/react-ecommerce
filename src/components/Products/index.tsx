@@ -93,7 +93,7 @@ const Product: React.FC<ProductProps> = (product) => {
                   <p>
                      {userLanguage === 'en'
                         ? `${price}$`
-                        : `रू ${getNepaliPrice(Number(price) * 118.75)}`}
+                        : `रू ${getNepaliPrice(price)}`}
                   </p>
 
                   {getQuantity() > 0 ? (

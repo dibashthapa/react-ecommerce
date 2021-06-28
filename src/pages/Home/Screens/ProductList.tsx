@@ -7,10 +7,6 @@ import { useSearch } from '../../../contexts/search/search.provider';
 import { useHistory } from 'react-router-dom';
 import { useLanguage } from '../../../contexts/language/language.provider';
 import Product, { ProductProps } from '../../../components/Products';
-interface Props {
-   value: string;
-   category?: string;
-}
 
 const ProductList: React.FC = () => {
    const {
@@ -20,6 +16,10 @@ const ProductList: React.FC = () => {
    const {
       state: { userLanguage },
    } = useLanguage();
+   interface Props {
+      value: string;
+      category: string;
+   }
 
    const history = useHistory<null | undefined | Props>();
    const targetRef = useRef<HTMLDivElement | null>(null);

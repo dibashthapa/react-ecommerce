@@ -3,10 +3,15 @@ import CartDrawer from './CartDrawer';
 import { useDisclosure } from '@chakra-ui/react';
 import { useProductSelector, useProductDispatch } from '../../store';
 import { addQuantity, removeCart, subtractQuantity } from '../../store/actions';
+import { getNepaliPrice } from '../../helpers/convertLanguage';
+import { useLanguage } from '../../contexts/language/language.provider';
 
 const Cart = () => {
    const { isOpen, onOpen, onClose } = useDisclosure();
    const products = useProductSelector((state) => state.products);
+   const {
+      state: { userLanguage },
+   } = useLanguage();
    const dispatch = useProductDispatch();
    const getQuantity = (product: rootState) => {
       const count = products
@@ -37,10 +42,17 @@ const Cart = () => {
    };
 
    const getTotalPrice = () => {
-      return products.reduce((sum, i) => {
+      const totalPrice = products.reduce((sum, i) => {
          return sum + Number(i.price) * i.count;
       }, 0);
+
+      if (userLanguage === 'en') {
+         return `$${totalPrice.toFixed(2)}`;
+      } else {
+         return `रू ${getNepaliPrice(totalPrice.toString())}`;
+      }
    };
+
    return (
       <CartHanger onClick={onOpen}>
          <CartDrawer
@@ -52,7 +64,7 @@ const Cart = () => {
             decreaseQuantity={decreaseQuantity}
          />
          <TotalItems>{products.length} Items</TotalItems>
-         <PriceBox>${getTotalPrice().toFixed(2)}</PriceBox>
+         <PriceBox>{getTotalPrice()}</PriceBox>
       </CartHanger>
    );
 };
